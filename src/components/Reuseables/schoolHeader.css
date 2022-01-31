@@ -1,0 +1,45 @@
+.schoolHeader_header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left:100px;
+    padding-right: 100px;
+   
+}
+.schoolHeader_header .logo{
+    margin-top: 30px;
+    width: 130px;
+    height: 120px;
+}
+.schoolHeader_header .studentPhoto{
+    width: 130px;
+    height: 150px;
+    margin-top: 30px;
+}
+.schoolHeader_schoolName{
+    text-align: center;
+    
+}
+.schoolHeader_schoolName h1{
+    font-weight: 800;
+    font-size: 30px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important;
+}
+.schoolHeader_schoolName h6{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important;
+    font-weight: 800;
+}
+.schoolHeader_schoolName p{
+    font-weight: 600 !important;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    font-family: var(--Abel) !important;
+    color: var(--text-gray) !important;
+    
+}
+.schoolHeader_schoolName p span{
+    font-family: var(--Abel) !important;
+    color: blue;
+    
+}
+

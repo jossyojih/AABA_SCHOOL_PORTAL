@@ -1,0 +1,118 @@
+table {
+    border-collapse: collapse;
+    border: none;
+   }
+    th {
+      border: solid 1px black;
+      padding: 2px;
+      font-size: 16px;
+      text-align: center;
+      }
+      td {
+      border: solid 1px black;
+      padding: 3px;
+      font-size: 14px;
+      }  
+
+      .BroadSheet th,.BroadSheet td{
+        font-size: 12px;
+      }
+      .editResult table.table-bordered{
+        border:1px solid black;
+        margin-top:20px;
+        margin: 20px;
+        width: 100%;
+      }
+      .editResult table.table-bordered > thead > tr > th,
+      .computeResult table.table-bordered > thead > tr > th
+      {
+        border:1px solid black;
+        padding: 5px;
+      }
+      .editResult table.table-bordered > tbody > tr > td,
+      .editResult table.table-bordered > tbody > tr > th,
+      .computeResult table.table-bordered > tbody > tr > td,
+      .computeResult table.table-bordered > tbody > tr > th{
+        border:1px solid black;
+        padding: 5px;
+      }
+      .editResult,.computeResult{
+        max-width: 90%;
+        margin: 0 auto;
+       
+      }
+      .editResult_header,
+      .computeResult_header
+      {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .editResult_displayResult,
+      .computeResult_displayResult
+      {
+        width: 960px !important;
+        display: flex;
+        align-items: flex-start;
+      }
+.editResult_displayResult_reportSummary>table,
+.computeResult_displayResult_reportSummary>table{
+      /*  width: 300px !important;*/
+        margin-left: 30px !important;
+      }
+.computeResult_displayResult_reportSummary{
+  margin-left: 30px !important;
+  width: 30%;
+}
+      .computeResult .confirmBtn{
+        display: flex;
+        align-items: center;
+      }
+      .computeResult .confirmBtn .btn{
+        width: 30% !important;
+      }
+  .classBroadSheet{
+    padding: 20px;
+    width: 100vw;
+  }
+
+  .classBroadSheet h1{
+    margin-bottom: 20px;
+  }
+
+  .classBroadSheet .form-group{
+    width: 35%;
+  }
+  .classBroadSheet table{
+    margin-bottom: 30px;
+  }
+  .classBroadSheet .buttons{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  /* .classBroadSheet .buttons .btn{
+    width: 45% !important;
+  } */
+  .classBroadSheet .buttons .btn-left{
+    width: 30%;
+    margin-right: 1rem;
+  }
+  .form-radio{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .form-radio label{
+  margin: 0 3rem 0 1rem;
+  font-size: large;
+  font-weight: 600;
+  }
+  .radio-group{
+    position: absolute;
+    left: 15rem;
+
+  }
+
+ 
