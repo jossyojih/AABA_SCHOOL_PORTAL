@@ -8,7 +8,7 @@ import Modal from '../Modal';
 
 
 const fetchStudentFee = async (key, id) => {
-  console.log(id)
+
   if (!id) return
   console.log(id)
   const res = await fetch(`${HOST_URL}/api/payments/studentfees/${id}`, {
@@ -59,7 +59,7 @@ function UpdateStudentFee() {
     if (!data) return
 
     // Staff list data from query
-    console.log(data)
+
     setStdDetails(data.stdDetails)
     setFees(data.payment.paymentInfo)
     setSessionDetails(data.payment)
@@ -199,6 +199,7 @@ function UpdateStudentFee() {
                     <option value={"Paid"}>Paid</option>
                     <option value={"Incomplete Payment"}>Incomplete Payment</option>
                     <option value={"Not Paid"}>Not Paid</option>
+                    <option value={"Not Applicable"}>Not Applicable</option>
                   </select>
                 </td>
               </tr>
@@ -238,6 +239,7 @@ function UpdateStudentFee() {
                     <option value={"Paid"}>Paid</option>
                     <option value={"Incomplete Payment"}>Incomplete Payment</option>
                     <option value={"Not Paid"}>Not Paid</option>
+                    <option value={"Not Applicable"}>Not Applicable</option>
                   </select>
                 </td>
               </tr>
@@ -278,6 +280,7 @@ function UpdateStudentFee() {
                     <option value={"Paid"}>Paid</option>
                     <option value={"Incomplete Payment"}>Incomplete Payment</option>
                     <option value={"Not Paid"}>Not Paid</option>
+                    <option value={"Not Applicable"}>Not Applicable</option>
                   </select>
                 </td>
               </tr>
@@ -318,6 +321,7 @@ function UpdateStudentFee() {
                     <option value={"Paid"}>Paid</option>
                     <option value={"Incomplete Payment"}>Incomplete Payment</option>
                     <option value={"Not Paid"}>Not Paid</option>
+                    <option value={"Not Applicable"}>Not Applicable</option>
                   </select>
                 </td>
               </tr>
@@ -358,6 +362,7 @@ function UpdateStudentFee() {
                     <option value={"Paid"}>Paid</option>
                     <option value={"Incomplete Payment"}>Incomplete Payment</option>
                     <option value={"Not Paid"}>Not Paid</option>
+                    <option value={"Not Applicable"}>Not Applicable</option>
                   </select>
                 </td>
               </tr>

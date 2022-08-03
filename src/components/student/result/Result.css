@@ -1,3 +1,99 @@
+.student_result_image{
+  margin-top: -2rem !important;
+  width: 100%;
+  height: auto;
+}
+.student_result_image img{
+  width: 100%;
+}
+.studentResult {
+  border: 1px solid lightgray;
+  margin: 0 auto;
+  width: 1060px;
+  box-shadow: 4px 4px 4px 4px rgba(50, 50, 50, 0.25);
+  margin-top: 0rem;
+}
+.studentResult h5 {
+  font-weight: 800;
+  text-align: center;
+  text-decoration: underline;
+  margin-top: -10px;
+}
+.studentInfo {
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+.studentInfo div {
+  margin: -5px auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+}
+.studentInfo div h4 {
+  text-align: justify !important;
+  font-weight: 800;
+  font-size: 16px;
+  /* margin-left: 50px;
+ margin-right: 50px; */
+}
+.studentInfo .center1 {
+  margin-left: 100px;
+}
+.studentInfo .center2 {
+  margin-left: 0px;
+}
+.studentInfo .center3 {
+  margin-left: 10px;
+}
+.studentResult_displayResult {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-column-gap: 20px;
+}
+
+.studentResult_displayResult .table {
+  margin: 10px 20px 20px 20px !important;
+  border-color: #000 !important;
+}
+.studentResult_displayResult table.table-bordered {
+  border: 1px solid black;
+  margin-top: 20px;
+}
+.studentResult_displayResult table.table-bordered > thead > tr > th {
+  border: 1px solid black;
+}
+.studentResult_displayResult table.table-bordered > tbody > tr > td,
+.studentResult_displayResult table.table-bordered > tbody > tr > th {
+  border: 1px solid black;
+}
+
+.studentResult_displayResult table th {
+  font-weight: bolder;
+  font-size: 12px;
+  background-color: #e0e0e0;
+  padding: 10px;
+}
+.studentResult_displayResult table td {
+  font-weight: 600;
+  font-size: 12px;
+  padding: 5px;
+}
+table.gradeAnalysis td {
+  font-weight: 600;
+  font-size: 12px;
+  padding: 1px 5px 1px 5px;
+}
+
+.studentResult_displayResult .attendanceSummary,
+.gradeScale table.right {
+  width: 87% !important;
+}
+.studentResult_displayResult .resultSummary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 20px;
+}
 table {
     border-collapse: collapse;
     border: none;
@@ -114,5 +210,29 @@ table {
     left: 15rem;
 
   }
+  @media (max-width: 1025px) {
+    .studentResult {
+      /* border: 1px solid lightgray;
+      margin: 0 auto; */
+      width: 960px;
+      box-shadow: 4px 4px 4px 4px rgba(50, 50, 50, 0.25);
+      margin-top: 0rem;
+    }
+  }
+  @media (max-width: 630px) {
+  .student_result_image{
+    margin-top: -1rem !important;
+  }
+}
+@media (max-width: 580px) {
+  .student_result_image{
+    margin-top: -.5rem !important;
+  }
+}
+@media (max-width: 320px) {
+  .student_result_image{
+    margin-top: 0rem !important;
+  }
+}
 
  

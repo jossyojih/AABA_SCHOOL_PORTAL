@@ -30,7 +30,11 @@ function PaymentHistory() {
         if (!data) return
 
         // Payment History data from query
-        console.log(data)
+      
+        if(!data[0]){
+             alert('No payment History for this student')
+             return history.goBack()
+        }
         setStdDetails(data[0].studentDetails)
         setPayments(data)
         setTermInfo(data[0])

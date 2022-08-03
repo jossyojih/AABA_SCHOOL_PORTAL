@@ -13,10 +13,17 @@ function ResetPassword() {
   const [newPassword, setNewPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
 
+  useEffect(() => {
+    
+    localStorage.setItem("route", `/studentportal/reset-password`)
+}, [])
+
   const resetPassword = async (e) => {
     e.preventDefault();
     if (!password || !newPassword) return alert('Please Enter All fields')
    if(newPassword !== confirmPassword) return alert('new password does not match')
+   if(newPassword.length < 8) return alert('Password cannot be less than 8 characters')
+
     setIsLoading(true)
     const response = await fetch(`${HOST_URL}/api/users/reset-password/${user?.id}`, {
       method: 'put',
@@ -31,7 +38,6 @@ function ResetPassword() {
     })
 
     const data = await response.json()
-    console.log(data)
     if (data.error) {
       setIsLoading(false)
       alert(data.error)

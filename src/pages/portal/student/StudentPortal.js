@@ -6,6 +6,12 @@ import { Route, Switch, BrowserRouter } from 'react-router-dom';
 // import Admin from './Admin';
 import { useStateValue } from '../../../StateProvider';
 import { actionTypes } from '../../../reducer';
+import Fees from '../../../components/payments/Fees';
+import StudentProfile from '../../../components/student/StudentProfile'
+import StudentResult from '../../../components/student/result/StudentResult';
+import { Redirect } from 'react-router-dom';
+import ResetPassword from '../../../components/ResetPassword';
+import BookList from '../../../components/books/BookList';
 
 const StudentPortal = (props) => {
 
@@ -13,21 +19,23 @@ const StudentPortal = (props) => {
     const [signin, setSignin] = useState(false)
     const [signout, setSignout] = useState(false)
     const [show, setShow] = useState(false);
-    const[studentDetails,setStudentDetails] = useState()
+    const [studentDetails, setStudentDetails] = useState()
     const [message, setMessage] = useState('Do you want to activate staff register?')
     const [{ user }, dispatch] = useStateValue()
+    const [uri, setUri] = useState('')
 
- 
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [mobileView, setMobileView] = useState(false)
 
     const { match: { path } } = props;
     const [toggle, setToggle] = useState(false)
+    const [toggleMobileSidebar, setToggleMobileSidebar] = useState(true)
 
     const toggleSidebar = () => {
         setToggle(!toggle)
 
     }
+
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -40,10 +48,21 @@ const StudentPortal = (props) => {
     useEffect(() => {
         const student = JSON.parse(localStorage.getItem("student"))
         setStudentDetails(student)
+
+        setUri(localStorage.getItem("route"))
+
         //   resizeWindow();
         window.addEventListener("resize", resizeWindow);
         return () => window.removeEventListener("resize", resizeWindow);
     }, []);
+
+    useEffect(() => {
+        // Redirect to Profile
+        if (!uri) return
+        history.push(uri)
+
+    }, [uri])
+
 
     useEffect(() => {
 
@@ -59,13 +78,14 @@ const StudentPortal = (props) => {
         if (mobileView) setToggle(true)
     }, [mobileView])
 
+
     return (
         <div>
             <div id="wrapper">
 
-                <ul className={`navbar-nav bg-gradient-info sidebar ${toggle && "toggled"} sidebar-dark accordion`} id="accordionSidebar">
+                <ul className={`navbar-nav bg-gradient-info sidebar ${toggle && "toggled"} ${(toggleMobileSidebar && mobileView) && "mobile-sidebar"} sidebar-dark accordion`} id="accordionSidebar" onTouchMove={() => (mobileView && !toggleMobileSidebar) && setToggleMobileSidebar(!toggleMobileSidebar)}>
 
-                    <Link to='/' className="sidebar-brand d-flex align-items-center justify-content-center" >
+                    <Link to={`/studentportal/studentprofile/${studentDetails?._id}`} onClick={() => mobileView && setToggleMobileSidebar(!toggleMobileSidebar)} className="sidebar-brand d-flex align-items-center justify-content-center" >
                         <div className="sidebar-brand-icon .d-none .d-md-block">
                             <img src={logo} alt='logo' />
                         </div>
@@ -76,8 +96,8 @@ const StudentPortal = (props) => {
                     <hr className="sidebar-divider my-0" />
 
 
-                    <li className="nav-item">
-                        <Link to='/adminportal/admin' className="nav-link" >
+                    <li className="nav-item" onClick={() => mobileView && setToggleMobileSidebar(!toggleMobileSidebar)}>
+                        <Link to={`/studentportal/studentprofile/${studentDetails?._id}`} className="nav-link" >
                             <i className="fas fa-fw fa-tachometer-alt"></i>
                             <span>Dashboard</span></Link>
                     </li>
@@ -90,41 +110,26 @@ const StudentPortal = (props) => {
                         Interface
                     </div>
 
-                    <li className="nav-item active">
+                    <li className="nav-item">
                         <a className="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
                             <i className="fas fa-fw fa-folder"></i>
-                            <span>Pages</span>
+                            <span>Records</span>
                         </a>
                         <div id="collapsePages" className="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                            <div className="bg-white py-2 collapse-inner rounded">
-                                <h6 className="collapse-header">Admin Screens:</h6>
-                                {/*to='/staffsignin'*/}
-                                {/* {to='/staffsignout'} */}
-                                <Link to={`/adminportal/staffprofileupdate/${user?._id}`} className="collapse-item" >My Profile</Link>
-                                <p className="collapse-item" onClick={() => {
-                                    setSignout(false)
-                                    setSignin(true)
-                                    handleShow()
+                            <div className="bg-white py-2 collapse-inner rounded" onClick={() => mobileView && setToggleMobileSidebar(!toggleMobileSidebar)}>
 
-                                }} >Staff Signin</p>
+                                <Link to={`/studentportal/studentfees/${studentDetails?._id}`} className="collapse-item" >Fees & Payments</Link>
+                                <Link to={`/studentportal/studentbooks/${studentDetails?._id}`} className="collapse-item" >List Of Books</Link>
+                                <Link to={`/studentportal/termattendance/${studentDetails?._id}`} className="collapse-item" >Atendance</Link>
+                                <Link to={`/studentportal/studentperformance/${studentDetails?._id}`} className="collapse-item" >Performance Report</Link>
+                                <Link to='/studentportal/schoolcalendar' className="collapse-item" >School Calendar</Link>
+                                <Link to='/studentportal/reset-password' className="collapse-item" >Reset Password</Link>
 
-                                <p className="collapse-item" onClick={() => {
-                                    setSignin(false)
-                                    setSignout(true)
-                                    handleShow()
-                                }}>Staff Signout</p>
 
-                                <Link to='/adminportal/newstudent' className="collapse-item" >Register New Student</Link>
-                                <Link to='/adminportal/staffvalidation' className="collapse-item" >Staff Validation</Link>
-                                <div className="collapse-divider"></div>
-                                <h6 className="collapse-header">Other Pages:</h6>
-                                {/* <Link to='/adminportal/paymentpage' className="collapse-item">Payments</Link> */}
-                                <Link to='/adminportal/schoolcalendar' className="collapse-item" >School Calendar</Link>
-                                <Link to='/adminportal/resetstaffpwd' className="collapse-item" >Reset Staff Password</Link>
-                                <Link to='/adminportal/resetstdpassword' className="collapse-item" >Reset Student Password</Link>
                             </div>
                         </div>
                     </li>
+
 
                     <div className="sidebar-heading">
                         Addons
@@ -133,39 +138,19 @@ const StudentPortal = (props) => {
 
                     <li className="nav-item">
                         <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                            <i className="fas fa-fw fa-wrench"></i>
-                            <span>Staff</span>
+                            <i className="fas fa-book-open"></i>
+                            <span>Academics</span>
                         </a>
 
                         <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                            <div className="bg-white py-2 collapse-inner rounded">
+                            <div className="bg-white py-2 collapse-inner rounded" onClick={() => mobileView && setToggleMobileSidebar(!toggleMobileSidebar)}>
                                 <h6 className="collapse-header">Custom Components:</h6>
-                                <Link to='/adminportal/stafflist' className="collapse-item">Staff List</Link>
-                                <Link to='/adminportal/staffdailyattendance' className="collapse-item">Staff Attendance</Link>
-                                <Link to='/adminportal/stafflessonnotes' className="collapse-item">Staff Lesson Notes</Link>
-                                <Link to='/adminportal/stafflist' className="collapse-item">Staff Duty</Link>
+                                <Link to='/studentportal/stafflist' className="collapse-item">My Subjects</Link>
+                                <Link to='/studentportal/takequiz' className="collapse-item">My Assignments</Link>
+                                <Link to={`/studentportal/result/${studentDetails?._id}`} className="collapse-item">Result</Link>
                             </div>
                         </div>
                     </li>
-
-
-                    <li className="nav-item">
-                        <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-                            <i className="fas fa-fw fa-wrench"></i>
-                            <span>Students</span>
-                        </a>
-                        <div id="collapseUtilities" className="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                            <div className="bg-white py-2 collapse-inner rounded">
-                                <h6 className="collapse-header">Custom Utilities:</h6>
-                                <Link to='/adminportal/studentlist' className="collapse-item">Student List</Link>
-                                <Link to='/adminportal/classdailyattendance' className="collapse-item">Student Attendance</Link>
-                                <Link to='/adminportal/markstudentattendance' className="collapse-item">Student Register</Link>
-                                <Link to='/adminportal/classfees' className="collapse-item">Student Fees</Link>
-                                <Link to='/studentbroad' className="collapse-item">Student Result</Link>
-                            </div>
-                        </div>
-                    </li>
-
 
                     <hr className="sidebar-divider" />
 
@@ -173,15 +158,15 @@ const StudentPortal = (props) => {
 
                     <li className="nav-item">
                         <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#messages" aria-expanded="true" aria-controls="collapseUtilities">
-                            <i className="fas fa-fw fa-chart-area"></i>
+                            <i className="fa fa-envelope"></i>
                             <span>Messages</span>
                         </a>
                         <div id="messages" className="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                            <div className="bg-white py-2 collapse-inner rounded">
+                            <div className="bg-white py-2 collapse-inner rounded" onClick={() => mobileView && setToggleMobileSidebar(!toggleMobileSidebar)}>
                                 <h6 className="collapse-header">Custom Utilities:</h6>
-                                <Link to='/adminportal/' className="collapse-item">Compose</Link>
-                                <Link to='/adminportal/classdailyattendance' className="collapse-item">Inbox</Link>
-                                <Link to='/adminportal/markstudentattendance' className="collapse-item">Sent Messages</Link>
+                                <Link to='/studentportal/' className="collapse-item">Compose</Link>
+                                <Link to='/studentportal/classdailyattendance' className="collapse-item">Inbox</Link>
+                                <Link to='/studentportal/markstudentattendance' className="collapse-item">Sent Messages</Link>
 
                             </div>
                         </div>
@@ -195,11 +180,11 @@ const StudentPortal = (props) => {
                             <span>E-Learning</span>
                         </a>
                         <div id="eLearning" className="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                            <div className="bg-white py-2 collapse-inner rounded">
+                            <div className="bg-white py-2 collapse-inner rounded" onClick={() => mobileView && setToggleMobileSidebar(!toggleMobileSidebar)}>
                                 <h6 className="collapse-header">Custom Utilities:</h6>
-                                <Link to='/adminportal/' className="collapse-item">Online Classes</Link>
-                                <Link to='/adminportal/' className="collapse-item">Video Classes</Link>
-                                <Link to='/adminportal/displayquiz' className="collapse-item">E-Quiz</Link>
+                                <Link to='/studentportal/' className="collapse-item">Online Classes</Link>
+                                <Link to='/studentportal/' className="collapse-item">Video Classes</Link>
+                                <Link to='/studentportal/displayquiz' className="collapse-item">E-Quiz</Link>
 
                             </div>
                         </div>
@@ -221,7 +206,7 @@ const StudentPortal = (props) => {
                         <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
 
-                            <button id="sidebarToggleTop" className="btn btn-link d-md-none" onClick={toggleSidebar}>
+                            <button id="sidebarToggleTop" className="btn btn-link d-md-none" onClick={() => setToggleMobileSidebar(!toggleMobileSidebar)}>
                                 <i className="fa fa-bars"></i>
                             </button>
 
@@ -264,7 +249,7 @@ const StudentPortal = (props) => {
                                         <span className="badge badge-danger badge-counter">7</span>
                                     </a>
 
-                                    <div className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
+                                    {/* <div className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
                                         <h6 className="dropdown-header">
                                             Message Center
                                         </h6>
@@ -309,7 +294,7 @@ const StudentPortal = (props) => {
                                             </div>
                                         </a>
                                         <a className="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-                                    </div>
+                                    </div> */}
                                 </li>
 
                                 <div className="topbar-divider d-none d-sm-block"></div>
@@ -356,49 +341,19 @@ const StudentPortal = (props) => {
 
                         </nav>
 
-                        <div className="container-fluid">
+                        <div className="container-fluid student-portal-container" onClick={() => (mobileView && !toggleMobileSidebar) && setToggleMobileSidebar(!toggleMobileSidebar)}>
 
                             <Switch>
-                                {/* <Route path={`${path}/paymentpage`}  component={PaymentsPage}
-                      />
-                    <Route path={`${path}/displayquiz`}  component={DisplayQuizAdmin}
-                      />
-                     <Route path={`${path}/classfees`}  component={ClassFees}
-                      />
-                      <Route path={`${path}/staff/termattendance/:id`}  component={StaffTermAttendance}
-                      />
-                      <Route path={`${path}/student/termattendance/:id`}  component={TermAttendance}
-                      />
-                      <Route path={`${path}/studentbookupdate/:id`}  component={UpdateBookStatus}
-                      />
-                         <Route path={`${path}/studentfeesupdate/:id`}  component={UpdateFee}
-                      />
-                       <Route path={`${path}/studentfees/:id`}  component={Fees}
-                      />
-                      <Route path={`${path}/studentbook/:id`}  component={StudentBookList}
-                      />
-                      <Route path={`${path}/staffprofile/:id`}  component={StaffProfile}
-                      />
-                      <Route path={`${path}/studentprofile/:id`}  component={StudentProfile}
-                      />
-                      <Route path={`${path}/markstudentattendance`}  component={MarkAttendance}
-                      />
-                
-                      <Route path={`${path}/staffdailyattendance`}  component={StaffsDailyAttendance}
-                      />
-                      <Route path={`${path}/classdailyattendance`}  component={ClassDailyAttendance}
-                      />
-                      <Route path={`${path}/admin`} component={Admin} />
-                      
-                      <Route path={`${path}/subjectlist`} component={SubjectList}
-                      />
-          
-                      <Route path={`${path}/stafflist`} component={StaffList}
-                      />
-                     
-                    */}
-                         
-
+                                <Route path={`${path}/studentbooks/:id`} component={BookList}
+                                />
+                                <Route path={`${path}/reset-password`} component={ResetPassword}
+                                />
+                                <Route path={`${path}/result/:id`} component={StudentResult}
+                                />
+                                <Route path={`${path}/studentprofile/:id`} component={StudentProfile}
+                                />
+                                <Route path={`${path}/studentfees/:id`} component={Fees}
+                                />
                             </Switch>
 
                         </div>

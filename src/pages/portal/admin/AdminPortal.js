@@ -24,6 +24,7 @@ import UpdateStudentDetails from '../../../components/student/UpdateStudentDetai
 import HMComment from '../../../components/student/result/HMComments';
 import AdminHome from './AdminHome';
 import NewTermBegins from './NewTermBegins';
+import BookList from '../../../components/books/BookList';
 
 const AdminPortal = (props) => {
 
@@ -53,7 +54,7 @@ const AdminPortal = (props) => {
     };
 
     useEffect(() => {
-    
+
         //   resizeWindow();
         window.addEventListener("resize", resizeWindow);
         return () => window.removeEventListener("resize", resizeWindow);
@@ -110,7 +111,7 @@ const AdminPortal = (props) => {
 
                     <Link to='/' className="sidebar-brand d-flex align-items-center justify-content-center" >
                         <div className="sidebar-brand-icon .d-none .d-md-block ">
-                            <img src={logo} alt='logo'/>
+                            <img src={logo} alt='logo' />
                         </div>
                         <div className="sidebar-brand-text mx-2">AABA MEMORIAL SCHOOL</div>
                     </Link>
@@ -158,6 +159,7 @@ const AdminPortal = (props) => {
                                 }}>Staff Signout</p>
 
                                 <Link to='/adminportal/newstudent' className="collapse-item" >Register New Student</Link>
+                                <Link to='/adminportal/newstaff' className="collapse-item" >Register New Staff</Link>
                                 <Link to='/adminportal/staffvalidation' className="collapse-item" >Staff Validation</Link>
                                 <div className="collapse-divider"></div>
                                 <h6 className="collapse-header">Other Pages:</h6>
@@ -362,7 +364,7 @@ const AdminPortal = (props) => {
                                 <li className="nav-item dropdown no-arrow">
                                     <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <span className="mr-2 d-none d-lg-inline text-gray-600 small">{user?.username}</span>
-                                        <img className="img-profile rounded-circle" src={user?.photo} alt={user?.username}/>
+                                        <img className="img-profile rounded-circle" src={user?.photo} alt={user?.username} />
                                     </a>
 
                                     <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -403,44 +405,8 @@ const AdminPortal = (props) => {
                         <div className="container-fluid">
 
                             <Switch>
-                                {/* <Route path={`${path}/paymentpage`}  component={PaymentsPage}
-                      />
-                    <Route path={`${path}/displayquiz`}  component={DisplayQuizAdmin}
-                      />
-                     <Route path={`${path}/classfees`}  component={ClassFees}
-                      />
-                      <Route path={`${path}/staff/termattendance/:id`}  component={StaffTermAttendance}
-                      />
-                      <Route path={`${path}/student/termattendance/:id`}  component={TermAttendance}
-                      />
-                      <Route path={`${path}/studentbookupdate/:id`}  component={UpdateBookStatus}
-                      />
-                         <Route path={`${path}/studentfeesupdate/:id`}  component={UpdateFee}
-                      />
-                       <Route path={`${path}/studentfees/:id`}  component={Fees}
-                      />
-                      <Route path={`${path}/studentbook/:id`}  component={StudentBookList}
-                      />
-                      <Route path={`${path}/staffprofile/:id`}  component={StaffProfile}
-                      />
-                      <Route path={`${path}/studentprofile/:id`}  component={StudentProfile}
-                      />
-                      <Route path={`${path}/markstudentattendance`}  component={MarkAttendance}
-                      />
-                
-                      <Route path={`${path}/staffdailyattendance`}  component={StaffsDailyAttendance}
-                      />
-                      <Route path={`${path}/classdailyattendance`}  component={ClassDailyAttendance}
-                      />
-                      <Route path={`${path}/admin`} component={Admin} />
-                      
-                      <Route path={`${path}/subjectlist`} component={SubjectList}
-                      />
-          
-                      <Route path={`${path}/stafflist`} component={StaffList}
-                      />
-                     
-                    */}
+                                <Route path={`${path}/studentbooks/:id`} component={BookList}
+                                />
                                 <Route path={`${path}/head_teacher_remarks/:id`} component={HMComment}
                                 />
                                 <Route path={`${path}/staffprofile/:id`} component={StaffProfile}

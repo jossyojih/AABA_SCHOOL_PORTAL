@@ -43,7 +43,7 @@ function AppLayout() {
         />
         <Route path="/computeresult/:id" component={Result}
         />
-
+        <Route path="/registration/newstaff" component={NewStaff}/>
         <Route path="/" exact component={Login} />
       </Switch>
       {/* <footer id="footer" className=" footer-area">
@@ -89,7 +89,7 @@ function Layouts() {
       <Route path="/studentportal" component={StudentPortal} />
       <Route path="/staffportal" component={StaffPortal} />
       <Route path="/adminportal" component={AdminPortal} />
-      <Route path="/registration/newstaff" component={NewStaff}/>
+      {/* <Route path="/registration/newstaff" component={NewStaff}/> */}
       <Route path="/" component={AppLayout} />
     </Switch>
   );

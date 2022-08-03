@@ -87,7 +87,7 @@ function ConfirmScores({scores,setScores,total,setTotal,average,setAverage,nextS
                   
             </thead>
               <tbody>
-                {scores.map((score,i)=>{
+                {scores?.map((score,i)=>{
               return (
                   <tr key={i}>
                       <td>

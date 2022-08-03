@@ -70,7 +70,10 @@ function Login() {
                         if (data.user.role === 'accountant') return history.push('/accountportal')
                         if (data.user.role === 'student') {
                             localStorage.setItem("student", JSON.stringify(data.student))
-                            return history.push('/studentportal')
+                             // Store the current Route to prevent page refreshing to '/'
+                            localStorage.setItem("route", `/studentportal/studentprofile/${data.student._id}` )
+        
+                            return history.push(`/studentportal/studentprofile/${data.student._id}`)
                         }
 
 

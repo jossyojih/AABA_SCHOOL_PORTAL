@@ -5,7 +5,7 @@ import { HOST_URL } from '../../../config'
 import Loader from 'react-loader-spinner'
 
 function SubjectList() {
-    const nurserySubjects = ['Number work', 'Phonics', 'Letter work', 'Science', 'Social Norms', 'Hand Writing', 'colouring', 'Rhymes']
+    const nurserySubjects = ['Number work', 'Phonics', 'Letter work', 'Science', 'Social Norms', 'Hand Writing', 'colouring', 'Rhymes','Nursery Science']
     const primarySubjects = ['English Language',"Grammer","Phonics","Comprehension","Literature","Dictation/Spelling","Composition",'Mathematics', 'Social-Studies', 'Basic Science', 'Quantitative-Reasoning', "Verbal-Reasoning", 'I.C.T', "Home Economics","Civic Education",'Cultural and Creative Arts',"Music",'Hand-Writing', 'CRK/IRK', "Agricultural Science"]
     const secondarySubjects = ['English Language', 'Mathematics', 'Social-Studies', 'Basic Science', 'Business Studies', "P.H.E", 'I.C.T', "Home Economics", 'Basic Tech', 'Cultural and Creative Arts','CRK/IRK',"Civic Education", "Agricultural Science"]
     const [section, setSection] = useState();

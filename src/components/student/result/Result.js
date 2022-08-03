@@ -54,7 +54,9 @@ const Result = () => {
         grade: '',
         remark: '',
         subjectPosition: '',
-        classAverage: ''
+        classAverage: '',
+        classHigh:'',
+        classLow:''
 
       }
     })

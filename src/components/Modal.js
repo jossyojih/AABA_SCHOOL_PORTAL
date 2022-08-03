@@ -8,9 +8,9 @@ function ModalPopUp({ isLoading, message, title, handleClose, show, action1, act
 }) {
 
     useEffect(() => {
-        if(!itemId) return
-        console.log(itemId,title)
-    }, [title,itemId])
+        if (!itemId) return
+        console.log(itemId, title)
+    }, [title, itemId])
     return (
         <Modal
             show={show}
@@ -44,6 +44,9 @@ function ModalPopUp({ isLoading, message, title, handleClose, show, action1, act
                                 break;
                             case 'Update Fee':
                                 action1(itemId);
+                                break;
+                            case 'Upload Result':
+                                action2();
                                 break;
                             default:
                                 handleClose();
