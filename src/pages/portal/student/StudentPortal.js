@@ -12,15 +12,18 @@ import StudentResult from '../../../components/student/result/StudentResult';
 import { Redirect } from 'react-router-dom';
 import ResetPassword from '../../../components/ResetPassword';
 import BookList from '../../../components/books/BookList';
+import StudentTermAttendance from '../../../components/attendance/GetStdAttendance';
+import StudentSubjects from '../../../components/subjects/StudentSubjects';
+import Weeklyperformance from '../../../components/weeklyPerformance/Weeklyperformance';
+import SchoolEvents from '../../../components/SchoolEvent/SchoolEvents';
+import TakeQuiz from '../../../components/quiz/takequiz/TakeQuiz';
+import QuizPage from '../../../components/quiz/takequiz/QuizPage';
 
 const StudentPortal = (props) => {
 
     const history = useHistory()
-    const [signin, setSignin] = useState(false)
-    const [signout, setSignout] = useState(false)
     const [show, setShow] = useState(false);
     const [studentDetails, setStudentDetails] = useState()
-    const [message, setMessage] = useState('Do you want to activate staff register?')
     const [{ user }, dispatch] = useStateValue()
     const [uri, setUri] = useState('')
 
@@ -48,7 +51,6 @@ const StudentPortal = (props) => {
     useEffect(() => {
         const student = JSON.parse(localStorage.getItem("student"))
         setStudentDetails(student)
-
         setUri(localStorage.getItem("route"))
 
         //   resizeWindow();
@@ -120,9 +122,9 @@ const StudentPortal = (props) => {
 
                                 <Link to={`/studentportal/studentfees/${studentDetails?._id}`} className="collapse-item" >Fees & Payments</Link>
                                 <Link to={`/studentportal/studentbooks/${studentDetails?._id}`} className="collapse-item" >List Of Books</Link>
-                                <Link to={`/studentportal/termattendance/${studentDetails?._id}`} className="collapse-item" >Atendance</Link>
-                                <Link to={`/studentportal/studentperformance/${studentDetails?._id}`} className="collapse-item" >Performance Report</Link>
-                                <Link to='/studentportal/schoolcalendar' className="collapse-item" >School Calendar</Link>
+                                <Link to={`/studentportal/studentattendance/${studentDetails?._id}`} className="collapse-item" >Atendance</Link>
+                                <Link to={`/studentportal/weeklyperformance/${studentDetails?._id}`} className="collapse-item" >Performance Report</Link>
+                                <Link to='/studentportal/schoolevents' className="collapse-item" >School Calendar</Link>
                                 <Link to='/studentportal/reset-password' className="collapse-item" >Reset Password</Link>
 
 
@@ -145,7 +147,7 @@ const StudentPortal = (props) => {
                         <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                             <div className="bg-white py-2 collapse-inner rounded" onClick={() => mobileView && setToggleMobileSidebar(!toggleMobileSidebar)}>
                                 <h6 className="collapse-header">Custom Components:</h6>
-                                <Link to='/studentportal/stafflist' className="collapse-item">My Subjects</Link>
+                                <Link to={`/studentportal/studentsubjects/${studentDetails?.section}`} className="collapse-item">My Subjects</Link>
                                 <Link to='/studentportal/takequiz' className="collapse-item">My Assignments</Link>
                                 <Link to={`/studentportal/result/${studentDetails?._id}`} className="collapse-item">Result</Link>
                             </div>
@@ -221,7 +223,7 @@ const StudentPortal = (props) => {
                                         <i className="fas fa-search fa-fw"></i>
                                     </a>
 
-                                    <div className="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                                    {/* <div className="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                                         <form className="form-inline mr-auto w-100 navbar-search">
                                             <div className="input-group">
                                                 <input type="text" className="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
@@ -232,7 +234,7 @@ const StudentPortal = (props) => {
                                                 </div>
                                             </div>
                                         </form>
-                                    </div>
+                                    </div> */}
                                 </li>
 
 
@@ -344,6 +346,18 @@ const StudentPortal = (props) => {
                         <div className="container-fluid student-portal-container" onClick={() => (mobileView && !toggleMobileSidebar) && setToggleMobileSidebar(!toggleMobileSidebar)}>
 
                             <Switch>
+                                <Route path={`${path}/tacklequiz/:id`} component={QuizPage}
+                                />
+                                <Route path={`${path}/takequiz`} component={TakeQuiz}
+                                />
+                                <Route path={`${path}/schoolevents`} component={SchoolEvents}
+                                />
+                                <Route path={`${path}/weeklyperformance/:id`} component={Weeklyperformance}
+                                />
+                                <Route path={`${path}/studentsubjects/:section`} component={StudentSubjects}
+                                />
+                                <Route path={`${path}/studentattendance/:id`} component={StudentTermAttendance}
+                                />
                                 <Route path={`${path}/studentbooks/:id`} component={BookList}
                                 />
                                 <Route path={`${path}/reset-password`} component={ResetPassword}

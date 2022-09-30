@@ -31,7 +31,6 @@ function FeesToPay() {
 
     useEffect(() => {
         if (!data) return
-        console.log(data)
         setFeeId(data._id)
         setRegistrationFee(data.feeInfo.registration)
         setSchoolFees(data.feeInfo.schoolFees)
@@ -63,7 +62,6 @@ function FeesToPay() {
             })
 
             const data = await response.json()
-            console.log(data)
             if (data.error) {
                 setIsLoading(false)
                
@@ -197,7 +195,7 @@ function FeesToPay() {
 
             {
                 isLoading ? <button className="btn btn-primary btn-block"><Loader type="TailSpin" color="#FFF" height={40} width={40} /></button> :
-                    <button onClick={upDateSectionFees} className="btn btn-primary btn-block">Update</button>
+                    <button onClick={upDateSectionFees} className="btn btn-primary btn-block" disabled={isLoading?true:false}>Update</button>
             }
         </div>
     )

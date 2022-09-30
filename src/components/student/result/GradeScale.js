@@ -2,9 +2,6 @@ import React, {useEffect} from 'react'
 
 function GradeScale({studentDetails}) {
 
-    useEffect(() => {
-       console.log(studentDetails.section)
-    }, [studentDetails.section])
     return (
         <div className='gradeScale'>
              <table className="table table-bordered gradeAnalysis right"  id="dataTable" cellSpacing="0">

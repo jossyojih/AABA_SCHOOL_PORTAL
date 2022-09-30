@@ -1,0 +1,13 @@
+.performance_data{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.subject-performance .form-data{
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+}
+.subject-performance .form-data .radio-group{
+   margin-left: 12rem !important;
+}

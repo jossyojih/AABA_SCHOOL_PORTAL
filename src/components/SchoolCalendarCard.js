@@ -5,22 +5,22 @@ function SchoolCalendarCard() {
     
     const history = useHistory()
     const [data,setData]= useState()
-    useEffect(() => {
+    // useEffect(() => {
        
-        fetch('http://localhost:5000/admin/schoolcalendar',{
-            headers:{
-             "Authorization":"Bearer "+ localStorage.getItem("jwt")
-            }
-        }).then(res=>res.json())
-        .then(result=>{
+    //     fetch('http://localhost:5000/admin/schoolcalendar',{
+    //         headers:{
+    //          "Authorization":"Bearer "+ localStorage.getItem("jwt")
+    //         }
+    //     }).then(res=>res.json())
+    //     .then(result=>{
           
-          setData(result.data)
+    //       setData(result.data)
         
-        }).catch(err=>{
-            console.log(err)
-        })
+    //     }).catch(err=>{
+    //         console.log(err)
+    //     })
         
-    }, []);
+    // }, []);
     return (
             <div className="col-xl-3 col-md-6 mb-4">
                 <div className="card border-left-success shadow h-100 py-2">

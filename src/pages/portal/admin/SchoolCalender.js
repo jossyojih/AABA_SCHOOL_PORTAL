@@ -175,21 +175,22 @@ function SchoolCalendar() {
 
                         }} value={week}>
 
-                            <option value="one">Week 1</option>
-                            <option value="two">week 2</option>
-                            <option value="three">week 3</option>
-                            <option value="four">week 4</option>
-                            <option value="five">week 5</option>
-                            <option value="six">week 6</option>
-                            <option value="seven">week 7</option>
-                            <option value="eight">week 8</option>
-                            <option value="nine">week 9</option>
-                            <option value="ten">week 10</option>
-                            <option value="eleven">week 11</option>
-                            <option value="twelve">week 12</option>
-                            <option value="thirteen">week 13</option>
-                            <option value="fourteen">week 14</option>
-                            <option value="holiday">Holiday</option>
+                         
+                        <option value="One">Week 1</option>
+                        <option value="Two">week 2</option>
+                        <option value="Three">week 3</option>
+                        <option value="Four">week 4</option>
+                        <option value="Five">week 5</option>
+                        <option value="Six">week 6</option>
+                        <option value="Seven">week 7</option>
+                        <option value="Eight">week 8</option>
+                        <option value="Nine">week 9</option>
+                        <option value="Ten">week 10</option>
+                        <option value="Eleven">week 11</option>
+                        <option value="Twelve">week 12</option>
+                        <option value="Thirteen">week 13</option>
+                        <option value="Fourteen">week 14</option>
+                        <option value="Holiday">Holiday</option>
 
                         </select>
                         : <span>{week}

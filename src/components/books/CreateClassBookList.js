@@ -1,225 +1,223 @@
-import React, {useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
+import { useStateValue } from '../../StateProvider';
 import InputBook from './InputBook'
 import './Books.css'
 import ConfirmBookList from './ConfirmBookList'
+import { useQuery } from 'react-query'
 import Loader from 'react-loader-spinner'
-import UpdateBookList from './UpdateBookList';
-import {useHistory} from 'react-router-dom' 
+import UpdateBookList from './UpdateClassBookList';
+import { useHistory } from 'react-router-dom'
+import { HOST_URL } from '../../config'
+import SelectClass from '../SelectClass';
 
-function CreateBookList() { 
+const fetchBookList = async (key, bookClass) => {
+  if (!bookClass) return
+  const res = await fetch(`${HOST_URL}/api/admin/book-list/${bookClass}`, {
+    headers: {
+      "Authorization": "Bearer " + localStorage.getItem("jwt")
+    }
+  })
+  return res.json();
+}
+
+
+function CreateBookList() {
   const history = useHistory()
+  const [{ user }, dispatch] = useStateValue()
   const [inputFields, setInputFields] = useState(1)
-  const [book, setBook] = useState([])
+  const [books, setBooks] = useState([])
   const [bookClass, setBookClass] = useState('')
   const [author, setAuthor] = useState([])
   const [title, setTitle] = useState([])
-  const [price, setPrice] = useState([])
-  const [step, setStep] =  useState(1)
-  const [total, setTotal]= useState('')
+  const [step, setStep] = useState(1)
   const [isLoading, setIsLoading] = useState(false)
-  const [id,setId] = useState('')
-  const [update,setUpdate]= useState(false)
-  const [done,setDone] = useState(false)
+  const [id, setId] = useState('')
+  const [update, setUpdate] = useState(false)
+  const [done, setDone] = useState(false)
+
+  // React query fecth data
+  const { data, status } = useQuery(['StudentList', bookClass], fetchBookList)
 
   useEffect(() => {
-    if(!bookClass){
-      return
+    const staff = JSON.parse(localStorage.getItem("staff"))
+    if (staff) {
+      // console.log(staff.classTeacher)
+      setBookClass(staff.classTeacher)
     }
-    setIsLoading(true)
-    fetch(`http://localhost:5000/booklist/${bookClass}`,{
-      headers:{
-       "Authorization":"Bearer "+ localStorage.getItem("jwt")
-      }
-  }).then(res=>res.json())
-  .then(data=>{
-    console.log(data.book[0])
-    if(!data.book[0]){
+  }, [])
+
+
+
+  useEffect(() => {
+    if (!bookClass) return
+    if (!data) return
+    // Book list data from query
+    // console.log(data[0].list[0])
+    if (!data[0]) {
       setStep(1)
+      const book = []
+      for (let i = 0; i < inputFields; i++) {
+        book.push({
+          author: '',
+          title: '',
+        })
+      }
+      setBooks(book)
       setIsLoading(false)
-    }else{
-      console.log(data.book[0].list)
-      setId(data.book[0]._id)
-      setStep(3)
+    } else {
+      setId(data[0]._id)
+      setBooks(data[0].list)
       setUpdate(true)
-      setBook(data.book[0].list)
-    
-      setIsLoading(false)
+      setStep(3)
     }
-    
+    // setBooks(data)
+  }, [data])
 
-  }).catch(err=>{
-      console.log(err)
-  })
-
-
-  }, [bookClass])
 
   useEffect(() => {
-    if(step===3 && update){
-      return
-    
-      }else{
-        const ba = []
-        for (let i=0; i <inputFields; i++){
-          ba.push({
-            author:author[i],
-            title:title[i],
-            price:price[i]
-          })
-        }
-        setBook(ba)
-      }
-    
-   
-  }, [inputFields,step])
+
+    const book = []
+    for (let i = 0; i < inputFields; i++) {
+      book.push({
+        author: author[i],
+        title: title[i],
+      })
+    }
+    setBooks(book)
+
+  }, [inputFields])
+
+  function handleInputs() {
+    console.log(books)
+    setStep(2)
+  }
 
 
-const saveBook = () =>{
+  const saveBook = async () => {
 
-  fetch('http://localhost:5000/newbooklist',{
-    method:'post',
-    headers:{
-        "Content-Type":"application/json",
-        "Authorization":"Bearer "+ localStorage.getItem("jwt")
-    },
-    body:JSON.stringify({
+    const bookList = books.filter(x => x.author || x.title)
+
+    if (!bookList[0]) return alert("Please Enter Title and Author of a Book.")
+
+    const response = await fetch(`${HOST_URL}/api/admin/newbooklist`, {
+      method: 'post',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + localStorage.getItem("jwt")
+      },
+      body: JSON.stringify({
         bookClass,
-        book, 
-        total
+        books: bookList,
+      })
     })
-  }).then(res=>res.json())
-  .then(data=>{
-    console.log(data)
-    alert('Book List Saved Succesfully')
-    history.push('/adminportal/admin')
-  }).catch(err=>{
-    console.log(err)
-})
-}
-const updateBookList = () =>{
+    const data = await response.json()
+    alert(data.message)
+    history.goBack()
 
-  fetch(`http://localhost:5000/booklist/${id}`,{
-    method:'put',
-    headers:{
-        "Content-Type":"application/json",
-        "Authorization":"Bearer "+ localStorage.getItem("jwt")
-    },
-    body:JSON.stringify({
+  }
+  const updateBookList = async () => {
+
+    const bookList = books.filter(books => books.author !== '' || books.title !== '')
+    if (!bookList[0]) return alert("Please Enter Title and Author of a Book.")
+
+    const response = await fetch(`${HOST_URL}/api/admin/booklist/${id}`, {
+      method: 'put',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + localStorage.getItem("jwt")
+      },
+      body: JSON.stringify({
         bookClass,
-        book, 
-        total
+        books: bookList,
+      })
     })
-  }).then(res=>res.json())
-  .then(data=>{
+    const data = await response.json()
     console.log(data)
     alert('Book List Updated Succesfully')
-    history.push('/adminportal/admin')
-  }).catch(err=>{
-    console.log(err)
-})
-}
+    history.goBack()
+
+  }
 
   const addBook = (e) => {
     e.preventDefault();
-    if(update){
-      setBook(prev=>[...prev,{author:'',title:'',price:''}])
-     setDone(false)
-    }else{
-      setInputFields(inputFields=> inputFields + 1 )
+
+    if (update) {
+      setBooks(prev => [...prev, { author: '', title: '' }])
+      setDone(false)
+    } else {
+      setInputFields(inputFields => inputFields + 1)
     }
-    
-   
+
+
   };
 
 
-  return isLoading ?  <Loader className='loader' type="TailSpin" color="#00BFFF" height={80} width={80} style={{marginleft:'600px',marginTop:'200px'}}/>:(
+  return (
     <div className='bookList'>
       <h3>Create List Of Books For Each Class</h3>
-       <div className="form-group">
-          <div className="form-group-display">
-              <label htmlFor="class">Select Class</label>
-                            
-              <select className="form-control" name="class" id="class" onChange={(e) => {
-                    setBookClass(e.target.value);
-                               
-                    }} value={bookClass}>
-                    <option value="">Select Class</option>
-                    <option value="Nursery1">Nursery 1</option>
-                    <option value="Nursery2">Nursery 2</option>
-                    <option value="Nursery2">Nursery 3</option>
-                    <option value="Primary1">Primary 1</option>
-                    <option value="Primary2">Primary 2</option>
-                    <option value="Primary3">Primary 3</option>
-                    <option value="Primary4">Primary 4</option>
-                    <option value="Primary5">Primary 5</option>
-                    <option value="Primary6">Primary 6</option>
-              </select>
-            </div> 
-                      
-          </div>
-          {
-             bookClass &&
-             <>
-                {
-          step===1?<div>
-             {
-              book.map((boo,i)=><InputBook
-                key={i}
-                i={i}
-                title={title}
-                setTitle={setTitle}
-                author = {author}
-                setAuthor={setAuthor}
-                price={price}
-                setPrice = {setPrice}
-                />  
-              )
-            }
-          </div>:step===2?<ConfirmBookList
-                  book={book} 
-                  setTotal={setTotal}
-                  total={total}
-                  step={step}/>:
-                  <div>
-                     {
-              book.map((boo,i)=><UpdateBookList
-                key={i}
-                i={i}
-                book={book}
-                setBook={setBook}
-                total={total}
-                setTotal={setTotal}
-                done={done}
-                setDone={setDone}
-                />  
-              )
-            }
-                  </div>
-          }
+      {
+        (step === 1 && user?.role === 'admin') &&
+        <div className="form-group">
+          <SelectClass
+            section={''}
+            stdClass={bookClass}
+            setStdClass={setBookClass}
+          />
+        </div>
+      }
 
-          <div className='bookList_btn'>
-               {step===1 ? <><button className="btn btn-primary btn-block" onClick={addBook}> Add another book  </button>
-               <button className="btn btn-primary btn-block" onClick={()=>setStep(2)}> Done  </button>
-               </>:step===2?
-                <><button onClick={()=>setStep(1)} className="btn btn-primary btn-block">Back</button>
-                 <button onClick={saveBook} className="btn btn-primary btn-block">Save Book List</button>
-                 </>: <>
-                 <button className="btn btn-primary btn-block" onClick={addBook}> Add another book  </button>
-                 {done?<button onClick={updateBookList} className="btn btn-primary btn-block">Save</button>:
-                 <button onClick={()=>setDone(true)} className="btn btn-primary btn-block">Done</button>
-                }
-                 </>
-                }
-            </div>
-             </>
-           } 
-          
-           
-           
-        
-           
-          
-    </div>
+      {
+        (bookClass && step === 1) && <div>
+          {
+            books?.map((boo, i) => <InputBook
+              key={i}
+              i={i}
+              title={title}
+              setTitle={setTitle}
+              author={author}
+              setAuthor={setAuthor}
+              books={books}
+              setBooks={setBooks}
+            />
+            )
+          }
+        </div>
+      }
+      {(bookClass && step === 2) && <ConfirmBookList
+        books={books}
+        step={step} />
+      }
+      {step === 3 && <div>
+        {
+          books?.map((book, i) => <UpdateBookList
+            key={i}
+            i={i}
+            book={book}
+            books={books}
+            setBooks={setBooks}
+            done={done}
+            setDone={setDone}
+          />
+          )
+        }
+      </div>
+      }
+
+      <div className='bookList_btn'>
+        {step === 1 ? <><button className="btn btn-primary btn-block" onClick={addBook} disabled={!bookClass && true}> Add another book  </button>
+          <button className="btn btn-primary btn-block" onClick={() => handleInputs()} disabled={!bookClass && true}> Done  </button>
+        </> : step === 2 ?
+          <><button onClick={() => setStep(1)} className="btn btn-primary btn-block">Back</button>
+            <button onClick={update ? updateBookList : saveBook} className="btn btn-primary btn-block">Save Book List</button>
+          </> : <>
+            <button className="btn btn-primary btn-block" onClick={addBook} disabled={!bookClass && true}> Add another book  </button>
+            {done ? <button onClick={updateBookList} className="btn btn-primary btn-block">Save</button> :
+              <button onClick={() => setDone(true)} className="btn btn-primary btn-block">Done</button>
+            }
+          </>
+        }
+      </div>
+    </div >
   );
 }
 

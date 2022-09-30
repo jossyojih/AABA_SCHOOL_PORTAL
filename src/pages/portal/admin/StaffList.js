@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { HOST_URL } from '../../../config'
 import { useQuery, usePaginatedQuery } from 'react-query'
+import { useStateValue } from '../../../StateProvider';
 import Modal from '../../../components/Modal';
 
 const fetchStaffList = async (key) => {
@@ -17,6 +18,7 @@ const fetchStaffList = async (key) => {
 
 
 function StaffList() {
+    const [{ user }, dispatch] = useStateValue()
     const [staffList, setStaffList] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [actionType, setActionType] = useState('');
@@ -34,7 +36,6 @@ function StaffList() {
 
     useEffect(() => {
         if (!data) return
-console.log(data)
         // Staff list data from query
         setStaffList(data)
     }, [data])
@@ -60,7 +61,7 @@ console.log(data)
                                     <th>State of Origin</th>
                                     <th>Email</th>
                                     <th>Phone</th>
-                                    <th>Marital Status</th>
+                                    <th>{user?.role==='admin' ? 'Marital Status' : 'Action'}</th>
 
                                 </tr>
                             </thead>
@@ -72,13 +73,20 @@ console.log(data)
                                         return (
                                             <tr key={staff._id}>
 
-                                                <td style={{ cursor: 'pointer' }} onClick={() => history.push(`/adminportal/staffprofile/${staff.user._id}`)}>{staff.user?.username.toUpperCase()}</td>
+                                                <td style={{ cursor: 'pointer' }} onClick={() => {user?.role==='admin' && history.push(`/adminportal/staffprofile/${staff.user._id}`)}}>{staff.user?.username.toUpperCase()}</td>
                                                 <td>{staff.firstname} {staff.middlename} {staff.lastname}</td>
                                                 <td>{staff.sex}</td>
                                                 <td>{staff.stateOfOrigin}</td>
                                                 <td>{staff.email}</td>
                                                 <td>{staff.phone}</td>
-                                                <td>{staff.maritalStatus}</td>
+                                                {
+                                                    user?.role==='accountant' &&
+                                                    <td style={{ display: "flex",alignItems:'end',justifyContent:'space-evenly' }}>
+                                                    <button className='btn btn-block btn-warning btn-sm mr-2'>Salary History </button> ||
+                                                    <button className='btn btn-block btn-primary btn-sm ml-2' onClick={()=>history.push(`/accountportal/paystaff/${staff.user._id}`)}>Pay Salary</button> </td>
+                                                }
+                                                {user?.role==='admin' && <td>{staff.maritalStatus}</td>}
+                                                
 
                                                 {/* <td>{(year-(staff.DOB).substring(0, 4))}</td> */}
                                             </tr>

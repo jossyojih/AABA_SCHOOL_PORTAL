@@ -13,28 +13,83 @@ import Fees from '../../../components/payments/Fees';
 import FeesToPay from '../../../components/payments/FeesToPay';
 import UpdateStudentFee from '../../../components/payments/UpdateStudentPayment';
 import PaymentHistory from '../../../components/payments/PaymentHistory';
+import RequisitionForm from '../../../components/Expenses/RequisitionForm';
+import ViewRequisitions from '../../../components/Expenses/ViewRequisitions';
+import ExpensesPage from '../../../components/Expenses/ExpensesPage';
+import StaffList from '../admin/StaffList';
+import StaffpaymentList from '../../../components/salary/StaffpaymentList';
+import UpdateSalary from '../../../components/salary/UpdateSalary';
+import FinancialSummary from './FinancialSummary';
+import ViewSalaries from '../../../components/salary/ViewSalaries';
 
 
 const AccountPortal = (props) => {
 
-    const history = useHistory()
-    const [signin, setSignin] = useState(false)
-    const [signout, setSignout] = useState(false)
-    const [show, setShow] = useState(false);
-    const [message, setMessage] = useState('Do you want to activate staff register?')
-    const [{ user }, dispatch] = useStateValue()
+    // const history = useHistory()
+    // const [signin, setSignin] = useState(false)
+    // const [signout, setSignout] = useState(false)
+    // const [show, setShow] = useState(false);
+    // const [message, setMessage] = useState('Do you want to activate staff register?')
+    // const [{ user }, dispatch] = useStateValue()
 
- 
+
+    // const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    // const [mobileView, setMobileView] = useState(false)
+
+    // const { match: { path } } = props;
+    // const [toggle, setToggle] = useState(false)
+
+    // const toggleSidebar = () => {
+    //     setToggle(!toggle)
+
+    // }
+
+    // const handleClose = () => setShow(false);
+    // const handleShow = () => setShow(true);
+
+    // let resizeWindow = () => {
+    //     setWindowWidth(window.innerWidth);
+
+    // };
+
+    // useEffect(() => {
+    //     //   resizeWindow();
+    //     window.addEventListener("resize", resizeWindow);
+    //     return () => window.removeEventListener("resize", resizeWindow);
+    // }, []);
+
+    // useEffect(() => {
+
+    //     if (windowWidth < 560) {
+    //         setMobileView(true)
+    //     }
+    //     return () => {
+    //         setMobileView(false)
+    //     };
+    // }, [windowWidth])
+
+    // useEffect(() => {
+    //     if (mobileView) setToggle(true)
+    // }, [mobileView])
+
+    const history = useHistory()
+    const [show, setShow] = useState(false);
+    const [studentDetails, setStudentDetails] = useState()
+    const [{ user }, dispatch] = useStateValue()
+    const [uri, setUri] = useState('')
+
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [mobileView, setMobileView] = useState(false)
 
     const { match: { path } } = props;
     const [toggle, setToggle] = useState(false)
+    const [toggleMobileSidebar, setToggleMobileSidebar] = useState(true)
 
     const toggleSidebar = () => {
         setToggle(!toggle)
 
     }
+
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -45,10 +100,22 @@ const AccountPortal = (props) => {
     };
 
     useEffect(() => {
+        const student = JSON.parse(localStorage.getItem("student"))
+        setStudentDetails(student)
+        setUri(localStorage.getItem("route"))
+
         //   resizeWindow();
         window.addEventListener("resize", resizeWindow);
         return () => window.removeEventListener("resize", resizeWindow);
     }, []);
+
+    useEffect(() => {
+        // Redirect to Profile
+        if (!uri) return
+        history.push(uri)
+
+    }, [uri])
+
 
     useEffect(() => {
 
@@ -68,11 +135,9 @@ const AccountPortal = (props) => {
     return (
         <div>
             <div id="wrapper">
+                <ul className={`navbar-nav bg-gradient-info sidebar ${toggle && "toggled"} ${(toggleMobileSidebar && mobileView) && "mobile-sidebar"} sidebar-dark accordion`} id="accordionSidebar" onTouchMove={() => (mobileView && !toggleMobileSidebar) && setToggleMobileSidebar(!toggleMobileSidebar)}>
 
-
-                <ul className={`navbar-nav bg-gradient-info sidebar ${toggle && "toggled"} sidebar-dark accordion`} id="accordionSidebar">
-
-                    <Link to='/' className="sidebar-brand d-flex align-items-center justify-content-center" >
+                    <Link to='/' onClick={() => mobileView && setToggleMobileSidebar(!toggleMobileSidebar)} className="sidebar-brand d-flex align-items-center justify-content-center">
                         <div className="sidebar-brand-icon .d-none .d-md-block">
                             <img src={logo} alt='logo' />
                         </div>
@@ -83,8 +148,8 @@ const AccountPortal = (props) => {
                     <hr className="sidebar-divider my-0" />
 
 
-                    <li className="nav-item">
-                        <Link to='/adminportal/admin' className="nav-link" >
+                    <li className="nav-item" onClick={() => mobileView && setToggleMobileSidebar(!toggleMobileSidebar)}>
+                        <Link to='/accountportal' className="nav-link" >
                             <i className="fas fa-fw fa-tachometer-alt"></i>
                             <span>Dashboard</span></Link>
                     </li>
@@ -103,11 +168,19 @@ const AccountPortal = (props) => {
                             <span>Pages</span>
                         </a>
                         <div id="collapsePages" className="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                            <div className="bg-white py-2 collapse-inner rounded">
-                                <h6 className="collapse-header">Finance Screens:</h6>
+                            <div className="bg-white py-2 collapse-inner rounded" onClick={() => mobileView && setToggleMobileSidebar(!toggleMobileSidebar)}>
+                                <h6 className="collapse-header">Payment Screens:</h6>
                                 <Link to='/accountportal/paymentpage' className="collapse-item">View Payments</Link>
-                                <Link to='/accountportal/staffvalidation' className="collapse-item" >New Payment</Link>
+                                {/* <Link to='/accountportal/staffvalidation' className="collapse-item" >New Payment</Link> */}
                                 <Link to='/accountportal/feestopay' className="collapse-item">Fees By Sections</Link>
+                                <h6 className="collapse-header">Expenses Screens:</h6>
+                                <Link to='/accountportal/viewexpenses' className="collapse-item">View Expenses</Link>
+                                <Link to='/accountportal/requisitionform' className="collapse-item">Raise Requisition</Link>
+                                <Link to='/accountportal/viewrequisitions' className="collapse-item">View Requisitions</Link>
+                                <h6 className="collapse-header">Salary Screens:</h6>
+                                <Link to='/accountportal/staffpaymentlist' className="collapse-item">Pay Salary</Link>
+                                <Link to='/accountportal/viewsalaries' className="collapse-item">View Salaries</Link>
+                                <Link to='/accountportal/financialsummary' className="collapse-item">FinancialSummary</Link>
                                 <div className="collapse-divider"></div>
 
                             </div>
@@ -126,12 +199,12 @@ const AccountPortal = (props) => {
                         </a>
 
                         <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                            <div className="bg-white py-2 collapse-inner rounded">
+                            <div className="bg-white py-2 collapse-inner rounded" onClick={() => mobileView && setToggleMobileSidebar(!toggleMobileSidebar)}>
                                 <h6 className="collapse-header">Custom Components:</h6>
-                                <Link to='/adminportal/stafflist' className="collapse-item">Staff List</Link>
-                                <Link to='/adminportal/staffdailyattendance' className="collapse-item">Staff Attendance</Link>
+                                <Link to='/accountportal/stafflist' className="collapse-item">Staff List</Link>
+                                {/* <Link to='/adminportal/staffdailyattendance' className="collapse-item">Staff Attendance</Link>
                                 <Link to='/adminportal/stafflessonnotes' className="collapse-item">Staff Lesson Notes</Link>
-                                <Link to='/adminportal/stafflist' className="collapse-item">Staff Duty</Link>
+                                <Link to='/adminportal/stafflist' className="collapse-item">Staff Duty</Link> */}
                             </div>
                         </div>
                     </li>
@@ -143,7 +216,7 @@ const AccountPortal = (props) => {
                             <span>Students</span>
                         </a>
                         <div id="collapseUtilities" className="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                            <div className="bg-white py-2 collapse-inner rounded">
+                            <div className="bg-white py-2 collapse-inner rounded" onClick={() => mobileView && setToggleMobileSidebar(!toggleMobileSidebar)}>
                                 <h6 className="collapse-header">Custom Utilities:</h6>
                                 <Link to='/accountportal/studentlist' className="collapse-item">Student List</Link>
                                 <Link to='/accountportal/classfees' className="collapse-item">Student Fees</Link>
@@ -164,11 +237,11 @@ const AccountPortal = (props) => {
                             <span>Messages</span>
                         </a>
                         <div id="messages" className="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                            <div className="bg-white py-2 collapse-inner rounded">
+                            <div className="bg-white py-2 collapse-inner rounded" onClick={() => mobileView && setToggleMobileSidebar(!toggleMobileSidebar)}>
                                 <h6 className="collapse-header">Custom Utilities:</h6>
-                                <Link to='/adminportal/' className="collapse-item">Compose</Link>
-                                <Link to='/adminportal/classdailyattendance' className="collapse-item">Inbox</Link>
-                                <Link to='/adminportal/markstudentattendance' className="collapse-item">Sent Messages</Link>
+                                <Link to='/accountportal' className="collapse-item">Compose</Link>
+                                <Link to='/accountportal' className="collapse-item">Inbox</Link>
+                                <Link to='/accountportal' className="collapse-item">Sent Messages</Link>
 
                             </div>
                         </div>
@@ -182,11 +255,11 @@ const AccountPortal = (props) => {
                             <span>E-Learning</span>
                         </a>
                         <div id="eLearning" className="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                            <div className="bg-white py-2 collapse-inner rounded">
+                            <div className="bg-white py-2 collapse-inner rounded" onClick={() => mobileView && setToggleMobileSidebar(!toggleMobileSidebar)}>
                                 <h6 className="collapse-header">Custom Utilities:</h6>
-                                <Link to='/adminportal/' className="collapse-item">Online Classes</Link>
-                                <Link to='/adminportal/' className="collapse-item">Video Classes</Link>
-                                <Link to='/adminportal/displayquiz' className="collapse-item">E-Quiz</Link>
+                                <Link to='/accountportal' className="collapse-item">Online Classes</Link>
+                                <Link to='/accountportal' className="collapse-item">Video Classes</Link>
+                                <Link to='/accountportal' className="collapse-item">E-Quiz</Link>
 
                             </div>
                         </div>
@@ -208,7 +281,7 @@ const AccountPortal = (props) => {
                         <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
 
-                            <button id="sidebarToggleTop" className="btn btn-link d-md-none" onClick={toggleSidebar}>
+                            <button id="sidebarToggleTop" className="btn btn-link d-md-none" onClick={() => setToggleMobileSidebar(!toggleMobileSidebar)}>
                                 <i className="fa fa-bars"></i>
                             </button>
 
@@ -223,7 +296,7 @@ const AccountPortal = (props) => {
                                         <i className="fas fa-search fa-fw"></i>
                                     </a>
 
-                                    <div className="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                                    {/* <div className="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                                         <form className="form-inline mr-auto w-100 navbar-search">
                                             <div className="input-group">
                                                 <input type="text" className="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
@@ -234,7 +307,7 @@ const AccountPortal = (props) => {
                                                 </div>
                                             </div>
                                         </form>
-                                    </div>
+                                    </div> */}
                                 </li>
 
 
@@ -251,7 +324,7 @@ const AccountPortal = (props) => {
                                         <span className="badge badge-danger badge-counter">7</span>
                                     </a>
 
-                                    <div className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
+                                    {/* <div className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
                                         <h6 className="dropdown-header">
                                             Message Center
                                         </h6>
@@ -296,7 +369,7 @@ const AccountPortal = (props) => {
                                             </div>
                                         </a>
                                         <a className="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-                                    </div>
+                                    </div> */}
                                 </li>
 
                                 <div className="topbar-divider d-none d-sm-block"></div>
@@ -305,7 +378,7 @@ const AccountPortal = (props) => {
                                 <li className="nav-item dropdown no-arrow">
                                     <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <span className="mr-2 d-none d-lg-inline text-gray-600 small">{user?.username}</span>
-                                        <img className="img-profile rounded-circle" src={user?.photo} alt={user?.username}/>
+                                        <img className="img-profile rounded-circle" src={user?.photo} alt={user?.username} />
                                     </a>
 
                                     <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -343,56 +416,33 @@ const AccountPortal = (props) => {
 
                         </nav>
 
-                        <div className="container-fluid">
+                        <div className="container-fluid student-portal-container" onClick={() => (mobileView && !toggleMobileSidebar) && setToggleMobileSidebar(!toggleMobileSidebar)}>
 
                             <Switch>
-                                {/* <Route path={`${path}/paymentpage`}  component={PaymentsPage}
-                      />
-                    <Route path={`${path}/displayquiz`}  component={DisplayQuizAdmin}
-                      />
-                     <Route path={`${path}/classfees`}  component={ClassFees}
-                      />
-                      <Route path={`${path}/staff/termattendance/:id`}  component={StaffTermAttendance}
-                      />
-                      <Route path={`${path}/student/termattendance/:id`}  component={TermAttendance}
-                      />
-                      <Route path={`${path}/studentbookupdate/:id`}  component={UpdateBookStatus}
-                      />
-                         <Route path={`${path}/studentfeesupdate/:id`}  component={UpdateFee}
-                      />
-                       <Route path={`${path}/studentfees/:id`}  component={Fees}
-                      />
-                      <Route path={`${path}/studentbook/:id`}  component={StudentBookList}
-                      />
-                      <Route path={`${path}/staffprofile/:id`}  component={StaffProfile}
-                      />
-                      <Route path={`${path}/studentprofile/:id`}  component={StudentProfile}
-                      />
-                      <Route path={`${path}/markstudentattendance`}  component={MarkAttendance}
-                      />
-                
-                      <Route path={`${path}/staffdailyattendance`}  component={StaffsDailyAttendance}
-                      />
-                      <Route path={`${path}/classdailyattendance`}  component={ClassDailyAttendance}
-                      />
-                      <Route path={`${path}/admin`} component={Admin} />
-                      
-                      <Route path={`${path}/subjectlist`} component={SubjectList}
-                      />
-          
-                      <Route path={`${path}/stafflist`} component={StaffList}
-                      />
-                     
-                    */}
+                                <Route path={`${path}/viewsalaries`} component={ViewSalaries}
+                                />
+                                <Route path={`${path}/financialsummary`} component={FinancialSummary}
+                                />
+
+                                <Route path={`${path}/viewexpenses`} component={ExpensesPage}
+                                />
+                                <Route path={`${path}/viewrequisitions`} component={ViewRequisitions}
+                                />
+                                <Route path={`${path}/requisitionform`} component={RequisitionForm}
+                                />
                                 <Route path={`${path}/feestopay`} component={FeesToPay}
                                 />
                                 <Route path={`${path}/updatestudentfees/:id`} component={UpdateStudentFee}
                                 />
-                                  <Route path={`${path}/studentpaymenthistory/:id`} component={PaymentHistory}
+                                <Route path={`${path}/studentpaymenthistory/:id`} component={PaymentHistory}
                                 />
                                 <Route path={`${path}/studentfees/:id`} component={Fees}
                                 />
                                 <Route path={`${path}/studentprofile/:id`} component={StudentProfile}
+                                />
+                                <Route path={`${path}/staffpaymentlist`} component={StaffpaymentList}
+                                />
+                                <Route path={`${path}/stafflist`} component={StaffList}
                                 />
                                 <Route path={`${path}/studentlist`} component={StudentList}
                                 />

@@ -46,8 +46,8 @@ function StdList({isLoading,stdClass,stdList,confirmAction,resetPwd,role}) {
                                                 <td>{student.stdClass}</td>
                                                 {!resetPwd?
                                     <>
-                                                <td>{student.stateOfOrigin}</td>
-                                                <td>{(year - (student.DOB).substring(0, 4))}</td>
+                                                <td>{student?.stateOfOrigin}</td>
+                                                <td>{(year - (student.DOB)?.substring(0, 4))}</td>
                                                 </>
                                                 :
                                                 <td> <button className='btn btn-warning btn-sm mr-2' onClick={() => confirmAction('password reset', student.user?._id)}>Reset Password</button></td>

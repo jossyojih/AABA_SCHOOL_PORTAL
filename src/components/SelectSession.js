@@ -1,13 +1,13 @@
 import React from 'react'
 
-function SelectSession({year,setYear}) {
+function SelectSession({year,setYear,disabled}) {
     return (
-        <div className="form-group-display">
-                <label htmlFor="class">Select Session</label>
+        <div className="form-group-display" style={{width:'250px'}}>
+                <label  htmlFor="class">Select Session</label>
                 
-                <select className="form-control" name="class" id="class" onChange={(e) => {
+                <select className="form-control" name="class" id="class" disabled={disabled} onChange={(e) => {
                     setYear(e.target.value);
-                
+            
                 }} value={year} required>
                         <option value="">Select Year</option>
                         <option value={2022}>2021/2022</option>

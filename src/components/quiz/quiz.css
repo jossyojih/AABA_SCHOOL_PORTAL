@@ -1,0 +1,60 @@
+.quizDetails .form-group{
+    width: 30%;
+}
+.inputquiz .form-group{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 80%;
+}
+.inputquiz .form-control{
+    width: 50%;
+    margin-left: 0px;
+}
+.inputquiz label{
+    width: 15%;
+   
+}
+.inputquiz input{
+justify-content: flex-start;
+
+}
+.inputquiz .options{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.inputquiz .options label{
+    margin-right: 100px;
+}
+
+.inputquiz .options input{
+    margin-right: 20px;
+}
+.confirmDisplay .options{
+    display: flex;
+    align-items: center;
+   
+}
+.confirmDisplay .options p{
+  margin-right: 15px;
+}
+.displayOptionsRadio{
+    display: flex;
+    flex-direction: column;
+}
+.displayOptionsRadio label{
+    margin-left: 20px;
+}
+.displayOptionsRadio input{
+    margin-left: 5px;
+    margin-right: 10px;
+}
+.adminQuizDisplay_display{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.adminQuizDisplay_display_left{
+    width: 40% !important;
+}

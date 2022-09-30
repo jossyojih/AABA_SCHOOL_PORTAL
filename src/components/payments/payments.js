@@ -21,50 +21,64 @@ function PaymentsPage() {
     const [year, setYear] = useState()
 
 
-    useEffect(async () => {
-        if (sort !== 'date') return
-        setIsLoading(true)
-        const response = await fetch(`${HOST_URL}/api/payments/${date.toDateString()}?stdClass=${stdClass}`, {
-            headers: {
-                "Authorization": "Bearer " + localStorage.getItem("jwt")
-            }
-        })
-        const data = await response.json()
-        setIsLoading(false)
-        console.log(data)
-        setData(data)
+    useEffect(() => {
+
+        async function fetchData() {
+            if (sort !== 'date') return
+            setIsLoading(true)
+            const response = await fetch(`${HOST_URL}/api/payments/${date.toDateString()}?stdClass=${stdClass}`, {
+                headers: {
+                    "Authorization": "Bearer " + localStorage.getItem("jwt")
+                }
+            })
+            const data = await response.json()
+            setIsLoading(false)
+            console.log(data)
+            setData(data)
+        }
+        fetchData()
+
     }, [date, stdClass])
 
-    useEffect(async () => {
-        if (!month) return
-        if (sort !== "month") return
-        setIsLoading(true)
-        const response = await fetch(`${HOST_URL}/api/payments/monthly_payment/${month}?stdClass=${stdClass}`, {
-            headers: {
-                "Authorization": "Bearer " + localStorage.getItem("jwt")
-            }
-        })
-        const data = await response.json()
-        setIsLoading(false)
-        console.log(data)
-        setData(data)
+    useEffect(() => {
+
+       async function fetchData() {
+            if (!month) return
+            if (sort !== "month") return
+            setIsLoading(true)
+            const response = await fetch(`${HOST_URL}/api/payments/monthly_payment/${month}?stdClass=${stdClass}`, {
+                headers: {
+                    "Authorization": "Bearer " + localStorage.getItem("jwt")
+                }
+            })
+            const data = await response.json()
+            setIsLoading(false)
+            console.log(data)
+            setData(data)
+        }
+        fetchData()
+      
     }, [month, stdClass])
 
-    useEffect(async () => {
-        if (!year || !term) {
-            return
-        }
-        if (sort !== "term") return
-        setIsLoading(true)
-        const response = await fetch(`${HOST_URL}/api/payments/term_payment/${term}?stdClass=${stdClass}&year=${year}`, {
-            headers: {
-                "Authorization": "Bearer " + localStorage.getItem("jwt")
+    useEffect(() => {
+
+        async function fetchData(params) {
+            if (!year || !term) {
+                return
             }
-        })
-        const data = await response.json()
-        setIsLoading(false)
-        console.log(data)
-        setData(data)
+            if (sort !== "term") return
+            setIsLoading(true)
+            const response = await fetch(`${HOST_URL}/api/payments/term_payment/${term}?stdClass=${stdClass}&year=${year}`, {
+                headers: {
+                    "Authorization": "Bearer " + localStorage.getItem("jwt")
+                }
+            })
+            const data = await response.json()
+            setIsLoading(false)
+            console.log(data)
+            setData(data)
+        }
+       fetchData()
 
     }, [year, term, stdClass]);
 
@@ -153,6 +167,7 @@ function PaymentsPage() {
                     sort === 'term' &&
                     <div className="form-group">
                         <SelectSession
+                            disabled={false}
                             year={year}
                             setYear={setYear}
                         />
@@ -245,7 +260,7 @@ function PaymentsPage() {
                   <th>Exam Fee</th>
                   <th>Excursion Fee</th>
                   <th>Book Fee</th> */}
-                                   
+
                                     <th><span style={{ textDecoration: 'line-through', textDecorationStyle: 'double' }}>N</span>{getGrandTotal()}</th>
                                 </tr>
                             </tfoot>

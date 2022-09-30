@@ -17,7 +17,6 @@ import './Result.css'
 
 
 const fetchStudentResult = async (key, id) => {
-    console.log(id)
     const res = await fetch(`${HOST_URL}/api/users/student-result/${id}`, {
         headers: {
             "Authorization": "Bearer " + localStorage.getItem("jwt")
@@ -44,6 +43,7 @@ function StudentResult() {
     // for modal
     const [show, setShow] = useState(false)
     const [message, setMessage] = useState('')
+
     const handleClose = () => {
         setShow(false);
         return
@@ -53,20 +53,13 @@ function StudentResult() {
     // React query fecth data
     const { data, status } = useQuery(['StudentResult', id], fetchStudentResult)
 
-    useEffect(async () => {
+    useEffect(() => {
         if(!data) return
         // Store the current Route to prevent page refreshing to '/'
         localStorage.setItem("route", `/studentportal/result/${id}`)
-        // const res = await fetch(`${HOST_URL}/api/users/student-result/${id}`, {
-            
-        //     headers: {
-        //         "Authorization": "Bearer " + localStorage.getItem("jwt")
-        //     }
-        // })
-        // const data = await res.json();
-
 
         if (!data?.result) {
+      
             alert('This student has no result for this term yet')
             setIsLoading(false)
 
@@ -79,6 +72,7 @@ function StudentResult() {
             }
 
         } else if (user?.role !== 'student') {
+            console.log(data.result)
             setResult(data.result)
             setScores(data.result?.scores)
             setStudentDetails(data.stdDetails)
@@ -89,7 +83,6 @@ function StudentResult() {
             setIsLoading(false)
 
         }
-
 
 
     }, [data])
@@ -125,7 +118,6 @@ function StudentResult() {
         })
 
         const returnedData = await response.json()
-        console.log(returnedData)
         if (returnedData.error) {
             setIsLoading(false)
             setMessage(returnedData.error)
@@ -133,7 +125,6 @@ function StudentResult() {
                 handleClose()
             }, 2000);
         } else {
-            console.log(returnedData)
             setIsLoading(false)
             handleClose()
             alert('Result saved Succesfully')

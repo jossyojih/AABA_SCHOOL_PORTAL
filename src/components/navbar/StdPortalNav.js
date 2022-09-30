@@ -13,10 +13,10 @@ function StdPortalNav({id,profile}) {
                 (user?.role !== 'student') &&
                 <>
                     <Link to={`/${user?.role === 'staff' ? 'staffportal' : 'adminportal'}/studentbooks/${id}`} className="collapse-item" >Book List |</Link>
-                    <Link to={`/${user?.role === 'staff' ? 'staffportal' : 'adminportal'}/student/termattendance/${id}`} className="collapse-item" >Attendance</Link>|
+                    <Link to={`/${user?.role === 'staff' ? 'staffportal' : 'adminportal'}/studentattendance/${id}`} className="collapse-item" >Attendance</Link>|
                     <Link to={`/student/result/${id}`} className="collapse-item" >Result</Link>|
                     <Link to={`/${profile?.section === 'Secondary' ? 'computesecresult' : 'computeresult'}/${id}`} className="collapse-item" >Compute Result</Link>|
-                    <Link to={`/${user?.role === 'staff' ? 'staffportal' : 'adminportal'}/`} className="collapse-item" >Teacher's Remarks</Link>|
+                    {user?.role === 'staff' && <Link to={`/staffportal/weeklyperformance/${id}`} className="collapse-item" >Weekly performance |</Link>}
                     <Link to={`/${user?.role === 'staff' ? 'staffportal' : 'adminportal'}/`} className="collapse-item" >Affective Domain</Link>
                 </>
             }

@@ -25,6 +25,12 @@ import HMComment from '../../../components/student/result/HMComments';
 import AdminHome from './AdminHome';
 import NewTermBegins from './NewTermBegins';
 import BookList from '../../../components/books/BookList';
+import CreateBookList from '../../../components/books/CreateClassBookList';
+import UpdateStudentBookStatus from '../../../components/books/UpdateStudentBookList';
+import StudentTermAttendance from '../../../components/attendance/GetStdAttendance';
+import UpdateStdAttendance from '../../../components/attendance/UpdateStdAttendance';
+import SchoolEvents from '../../../components/SchoolEvent/SchoolEvents';
+import UpdateSchoolEvent from '../../../components/SchoolEvent/UpdateSchoolEvent';
 
 const AdminPortal = (props) => {
 
@@ -166,8 +172,10 @@ const AdminPortal = (props) => {
                                 <Link to='/adminportal/schoolcalendar' className="collapse-item" >School Calendar</Link>
                                 <Link to='/adminportal/resetstaffpwd' className="collapse-item" >Reset Staff Password</Link>
                                 <Link to='/adminportal/resetstdpassword' className="collapse-item" >Reset Student Password</Link>
+                                <Link to='/adminportal/schoolevents' className="collapse-item" >Calendar Of Events</Link>
                                 <Link to='/adminportal/termbegins' className="collapse-item" >Set Term Start Date</Link>
                                 {user?.role === 'super-admin' && <Link to='/adminportal/subjectlist' className="collapse-item">Subject List</Link>}
+                                <Link to='/adminportal/createbooklist' className="collapse-item" >Create List of Books</Link>
                             </div>
                         </div>
                     </li>
@@ -405,6 +413,18 @@ const AdminPortal = (props) => {
                         <div className="container-fluid">
 
                             <Switch>
+                            <Route path={`${path}/updateschoolevents`} component={UpdateSchoolEvent}
+                                />
+                                <Route path={`${path}/schoolevents`} component={SchoolEvents}
+                                />
+                                <Route path={`${path}/updatestudentattendance/:id`} component={UpdateStdAttendance}
+                                />
+                                <Route path={`${path}/studentattendance/:id`} component={StudentTermAttendance}
+                                />
+                                <Route path={`${path}/studentbookupdate/:id`} component={UpdateStudentBookStatus}
+                                />
+                                <Route path={`${path}/createbooklist`} component={CreateBookList}
+                                />
                                 <Route path={`${path}/studentbooks/:id`} component={BookList}
                                 />
                                 <Route path={`${path}/head_teacher_remarks/:id`} component={HMComment}

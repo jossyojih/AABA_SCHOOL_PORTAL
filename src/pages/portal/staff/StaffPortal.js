@@ -15,6 +15,18 @@ import Psychomoto from '../../../components/student/result/Psycomoto';
 import StaffProfile from '../../../components/staff/StaffProfile';
 import ResetPassword from '../../../components/ResetPassword';
 import SchoolCalendar from '../../../components/Schoolcalendar';
+import NewQuiz from '../../../components/quiz/NewQuiz';
+import Weeklyperformance from '../../../components/weeklyPerformance/Weeklyperformance';
+import EnterSubjectPerformance from '../../../components/weeklyPerformance/EnterSubjectPerformance';
+import EnterPsychomotoPerformance from '../../../components/weeklyPerformance/EnterPsychomotoPerformance';
+import WeeklyTeacherRemark from '../../../components/weeklyPerformance/WeeklyTeacherRemark';
+import SchoolEvents from '../../../components/SchoolEvent/SchoolEvents';
+import UpdateStdAttendance from '../../../components/attendance/UpdateStdAttendance';
+import StudentTermAttendance from '../../../components/attendance/GetStdAttendance';
+import UpdateStudentBookStatus from '../../../components/books/UpdateStudentBookList';
+import CreateBookList from '../../../components/books/CreateClassBookList';
+import BookList from '../../../components/books/BookList';
+import QuizDisplay from '../../../components/quiz/displayQuizes/QuizDisplay';
 
 
 const StaffPortal = (props) => {
@@ -22,7 +34,7 @@ const StaffPortal = (props) => {
     const history = useHistory()
     const [show, setShow] = useState(false);
     const [{ user }, dispatch] = useStateValue()
-    const [staffDetails,setStaffDetails] = useState()
+    const [staffDetails, setStaffDetails] = useState()
 
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [mobileView, setMobileView] = useState(false)
@@ -125,6 +137,7 @@ const StaffPortal = (props) => {
                                 <Link to='/staffportal' className="collapse-item">Student Attendance</Link>
                                 <Link to='/staffportal' className="collapse-item">Student Register</Link>
                                 <Link to='/studentbroad' className="collapse-item">Student Result</Link>
+                                <Link to='/staffportal/createbooklist' className="collapse-item" >Create List of Books</Link>
                             </div>
                         </div>
                     </li>
@@ -160,9 +173,11 @@ const StaffPortal = (props) => {
                         <div id="eLearning" className="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                             <div className="bg-white py-2 collapse-inner rounded">
                                 <h6 className="collapse-header">Custom Utilities:</h6>
+                                <Link to='/staffportal/newquiz' className="collapse-item">Set-Quiz</Link>
+                                <Link to='/staffportal/displayquiz' className="collapse-item">Display-Quiz</Link>
                                 <Link to='/staffportal/' className="collapse-item">Online Classes</Link>
-                                <Link to='/staffportal/' className="collapse-item">Video Classes</Link>
-                                <Link to='/staffportal/displayquiz' className="collapse-item">E-Quiz</Link>
+                                <Link to='/staffportal/' className="collapse-item">Video Lessons</Link>
+
 
                             </div>
                         </div>
@@ -322,25 +337,31 @@ const StaffPortal = (props) => {
                         <div className="container-fluid">
 
                             <Switch>
-
-                                {/* <Route path={`${path}/staffprofileupdate/:id`} component={UpdateStaffDetails}
+                                <Route path={`${path}/displayquiz`} component={QuizDisplay}
+                                />
+                                <Route path={`${path}/editweeklyteachercomment/:id`} component={WeeklyTeacherRemark}
+                                />
+                                <Route path={`${path}/editweeklypsychomoto/:id`} component={EnterPsychomotoPerformance}
+                                />
+                                <Route path={`${path}/editsubjectperformance/:id`} component={EnterSubjectPerformance}
                                 />
 
-                                <Route path={`${path}/resetstaffpwd`} component={ResetStaffPassword}
+                                <Route path={`${path}/weeklyperformance/:id`} component={Weeklyperformance}
                                 />
-                                <Route path={`${path}/resetstdpassword`} component={ResetStdPwd}
+                                <Route path={`${path}/schoolevents`} component={SchoolEvents}
                                 />
-                                 <Route path={`${path}/stafflist`} component={StaffList}
+                                <Route path={`${path}/updatestudentattendance/:id`} component={UpdateStdAttendance}
                                 />
-                                <Route path={`${path}/studentlist`} component={StudentList}
+                                <Route path={`${path}/studentattendance/:id`} component={StudentTermAttendance}
                                 />
-                                <Route path={`${path}/schoolcalendar`} component={SchoolCalendar}
+                                <Route path={`${path}/studentbookupdate/:id`} component={UpdateStudentBookStatus}
                                 />
-                                <Route path={`${path}/newstudent`} component={NewStudent}
+                                <Route path={`${path}/createbooklist`} component={CreateBookList}
                                 />
-                                <Route path={`${path}/staffvalidation`} component={StaffValidation}
+                                <Route path={`${path}/studentbooks/:id`} component={BookList}
                                 />
-                               */}
+                                <Route path={`${path}/newquiz`} component={NewQuiz}
+                                />
                                 <Route path={`${path}/schoolcalendar`} component={SchoolCalendar}
                                 />
                                 <Route path={`${path}/reset-password`} component={ResetPassword}
