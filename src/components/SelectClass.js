@@ -1,12 +1,12 @@
 import React from 'react'
 import { useStateValue } from '../StateProvider';
 
-function SelectClass({ stdClass, setStdClass, section, step, setStep,select }) {
+function SelectClass({ stdClass, setStdClass, section, step, setStep,select,New }) {
     const [{ user }, dispatch] = useStateValue()
     return (
 
         <div className="form-group-display">
-            <label htmlFor="class">Select Class</label>
+            <label htmlFor="class">Select {New && New} Class</label>
 
             <select className="form-control" name="class" id="class" onChange={(e) => {
                 setStdClass(e.target.value);

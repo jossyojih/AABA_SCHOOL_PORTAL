@@ -27,6 +27,7 @@ import UpdateStudentBookStatus from '../../../components/books/UpdateStudentBook
 import CreateBookList from '../../../components/books/CreateClassBookList';
 import BookList from '../../../components/books/BookList';
 import QuizDisplay from '../../../components/quiz/displayQuizes/QuizDisplay';
+import UpdateQuiz from '../../../components/quiz/UpdateQuiz';
 
 
 const StaffPortal = (props) => {
@@ -359,6 +360,9 @@ const StaffPortal = (props) => {
                                 <Route path={`${path}/createbooklist`} component={CreateBookList}
                                 />
                                 <Route path={`${path}/studentbooks/:id`} component={BookList}
+                                />
+                             
+                                <Route path={`${path}/updatequiz/:id`} component={UpdateQuiz}
                                 />
                                 <Route path={`${path}/newquiz`} component={NewQuiz}
                                 />

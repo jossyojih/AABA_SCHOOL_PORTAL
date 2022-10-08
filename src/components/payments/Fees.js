@@ -119,7 +119,9 @@ const Fees = () => {
               <tr>
                 <td>School Bus</td><td className='d-none d-md-block'><span>N</span>{sectionFees?.schBus}</td><td><span>N</span>{fees?.schBus}</td><td>{fees?.schBusRemark}</td>
               </tr>
-
+              <tr>
+                <td colSpan={2}>Total Paid</td><td className='text-primary'><span>N</span>{fees?.schBus + fees?.registration + fees?.schoolFees + fees?.uniform + fees?.books }</td><td className='d-none d-md-block'>{}</td>
+              </tr>
             </tbody>
           </table>
         </div>

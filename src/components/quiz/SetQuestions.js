@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import InputQuiz from './InputQuiz'
 
-function SetQuestions({ numberOfQuestions,prevStep, nextStep,questions,setQuestions}) {
+function SetQuestions({ numberOfQuestions,prevStep, nextStep,questions,setQuestions,update}) {
     const [questionNumber, setQuestionNumber] = useState(0)
 
 
     useEffect(() => {
         let que = []
+        if(update) return
         for (let i = 0; i < numberOfQuestions; i++) {
+            
             que.push(
                 { que: "", ans: "", options: ["", "", ""] }
             )

@@ -31,6 +31,7 @@ import StudentTermAttendance from '../../../components/attendance/GetStdAttendan
 import UpdateStdAttendance from '../../../components/attendance/UpdateStdAttendance';
 import SchoolEvents from '../../../components/SchoolEvent/SchoolEvents';
 import UpdateSchoolEvent from '../../../components/SchoolEvent/UpdateSchoolEvent';
+import PromoteStudents from './PromoteStudents';
 
 const AdminPortal = (props) => {
 
@@ -175,6 +176,7 @@ const AdminPortal = (props) => {
                                 <Link to='/adminportal/schoolevents' className="collapse-item" >Calendar Of Events</Link>
                                 <Link to='/adminportal/termbegins' className="collapse-item" >Set Term Start Date</Link>
                                 {user?.role === 'super-admin' && <Link to='/adminportal/subjectlist' className="collapse-item">Subject List</Link>}
+                                {user?.role === 'super-admin' && <Link to='/adminportal/promote-students' className="collapse-item">Promote Student</Link>}
                                 <Link to='/adminportal/createbooklist' className="collapse-item" >Create List of Books</Link>
                             </div>
                         </div>
@@ -413,6 +415,8 @@ const AdminPortal = (props) => {
                         <div className="container-fluid">
 
                             <Switch>
+                            <Route path={`${path}/promote-students`} component={PromoteStudents}
+                                />
                             <Route path={`${path}/updateschoolevents`} component={UpdateSchoolEvent}
                                 />
                                 <Route path={`${path}/schoolevents`} component={SchoolEvents}

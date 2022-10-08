@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 // import './Admin.css'
 import { useHistory } from 'react-router-dom';
 import { HOST_URL } from '../../../config'
-import { useQuery, usePaginatedQuery } from 'react-query'
+import { useQuery } from 'react-query'
 import Modal from '../../../components/Modal';
 import SelectClass from '../../../components/SelectClass';
 import StdList from '../../../components/StdList';

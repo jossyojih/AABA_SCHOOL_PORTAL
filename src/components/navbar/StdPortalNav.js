@@ -17,7 +17,7 @@ function StdPortalNav({id,profile}) {
                     <Link to={`/student/result/${id}`} className="collapse-item" >Result</Link>|
                     <Link to={`/${profile?.section === 'Secondary' ? 'computesecresult' : 'computeresult'}/${id}`} className="collapse-item" >Compute Result</Link>|
                     {user?.role === 'staff' && <Link to={`/staffportal/weeklyperformance/${id}`} className="collapse-item" >Weekly performance |</Link>}
-                    <Link to={`/${user?.role === 'staff' ? 'staffportal' : 'adminportal'}/`} className="collapse-item" >Affective Domain</Link>
+                    {/* <Link to={`/${user?.role === 'staff' ? 'staffportal' : 'adminportal'}/`} className="collapse-item" >Affective Domain</Link> */}
                 </>
             }
 

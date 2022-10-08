@@ -118,8 +118,8 @@ function QuizDisplay() {
                                         <td>{quiz.stdClass}</td>
                                         <td>{quiz.week}</td>
                                         <td>{moment(quiz.deadline).format('MMMM Do, YYYY')}</td>
-                                        {/* onClick={() => history.push(`/updatequiz/${quiz._id}`)} */}
-                                        <td><span  style={{ cursor: 'pointer' }} className='text-primary'>edit </span>
+                                       
+                                        <td><span  style={{ cursor: 'pointer' }} className='text-primary'  onClick={() => history.push(`/staffportal/updatequiz/${quiz._id}`)}>edit </span>
                                             | <span style={{ cursor: 'pointer' }} className='text-success' onClick={() => {
                                                 getScores(quiz._id, quiz.subject)
                                                 setStep(2)

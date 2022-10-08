@@ -45,7 +45,7 @@ function Weeklyperformance() {
     }, [data])
 
     return (
-        <div>
+        <div className='weekly_performance'>
             <h3>Student Performance Report For week {calendar?.week}</h3>
             {/* {stdDetails?.term === 1 ? '1st' : stdDetails?.term === 2 ? '2nd' : stdDetails.term === 3 ? '3rd' : ''} term {stdDetails?.year - 1}/{stdDetails?.year} Session </h3> */}
             <h5><span>Student Name:</span> {stdDetails.firstname} {stdDetails.middlename} {stdDetails.lastname}</h5>
@@ -79,7 +79,7 @@ function Weeklyperformance() {
                 </table>
             </div>
             {
-                user.role === 'staff' &&
+                user?.role === 'staff' &&
                 <div className='bookList_btn'>
                     <button className="btn btn-primary btn-block" onClick={() => history.push(`/staffportal/editsubjectperformance/${id}?section=${stdDetails.section}`)}> Edit Subject Performance  </button>
                     <button className="btn btn-primary btn-block" onClick={() => history.push(`/staffportal/editweeklypsychomoto/${id}?section=${stdDetails.section}`)} >Edit Psychomoto</button>
