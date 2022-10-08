@@ -186,7 +186,7 @@ const StudentPortal = (props) => {
                                 <h6 className="collapse-header">Custom Utilities:</h6>
                                 <Link to='/studentportal/' className="collapse-item">Online Classes</Link>
                                 <Link to='/studentportal/' className="collapse-item">Video Classes</Link>
-                                <Link to='/studentportal/displayquiz' className="collapse-item">E-Quiz</Link>
+                                {/* <Link to='/studentportal/displayquiz' className="collapse-item">E-Quiz</Link> */}
 
                             </div>
                         </div>

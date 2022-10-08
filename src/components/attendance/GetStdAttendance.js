@@ -63,7 +63,7 @@ function StudentTermAttendance() {
   // }, [])
 
   return (
-    <div>
+    <div className='student_term_attendance'>
       <StdPortalNav id={id} />
       <h3>Student Attendance For {stdDetails?.term === 1 ? '1st' : stdDetails?.term === 2 ? '2nd' : stdDetails.term === 3 ? '3rd' : ''} term {stdDetails?.year - 1}/{stdDetails?.year} Session </h3>
       <h5><span>Student Name:</span> {stdDetails.studentDetails?.firstname}  {stdDetails.studentDetails?.lastname}</h5>

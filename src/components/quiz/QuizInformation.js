@@ -17,7 +17,7 @@ const fetchStudentSubjects = async (key, section) => {
     return res.json();
 }
 
-function QuizInformation({ term, week, deadline, setDeadline, subject, setSubject, stdClass, nextStep, }) {
+function QuizInformation({ term, week, deadline, setDeadline, subject, setSubject,disabled, stdClass, nextStep, }) {
 
     const [show, setShow] = useState(false);
     const [modalShow, setModalShow] = useState(false)
@@ -86,7 +86,7 @@ function QuizInformation({ term, week, deadline, setDeadline, subject, setSubjec
                     <select className="form-control" name="marital" id="marital" onChange={(e) => {
                         setSubject(e.target.value);
 
-                    }} value={subject}>
+                    }} value={subject} disabled={disabled?true:false}>
 
                         <option value="">Select Subject</option>
 

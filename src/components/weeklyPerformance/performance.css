@@ -11,3 +11,37 @@
 .subject-performance .form-data .radio-group{
    margin-left: 12rem !important;
 }
+
+@media (max-width: 768px) {
+    .performance_data{
+        display: block;
+    }
+    .performance_data .affectiveDomain{
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+    .performance_data .affectiveDomain table th {
+        text-align: center;
+        font-size: 16px;
+        font: 800;
+        padding: 5px;
+      }
+      .performance_data .affectiveDomain table td,  .performance_data .gradeScale table td {
+        font-size: 14px;
+        padding: 5px;
+        text-align: center;
+      }
+      .weekly_performance .displayComment{
+        margin-top: 2rem;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+      }
+}
+@media (max-width: 395px) {
+    .weekly_performance h3{
+    font-size: 20px;
+}
+.weekly_performance h5{
+    font-size: 15px;
+}
+}
