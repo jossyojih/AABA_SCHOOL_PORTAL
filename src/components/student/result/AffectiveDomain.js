@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react'
 
 function AffectiveDomain({ result }) {
-    const [data, setData] = useState(result?.psychomoto)
+    const [data, setData] = useState()
 
+useEffect(() => {
+ setData(result.psychomoto)
+}, [result])
 
     return (
         <div className='affectiveDomain'>

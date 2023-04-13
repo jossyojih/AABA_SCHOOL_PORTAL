@@ -20,7 +20,12 @@ function SchoolHeader({ data }) {
 
                     {/* <p>Email: <span>info@qualisroyalacademy.com</span></p> */}
                 </div>
-                <img src={data?.photo} alt='student img' className='studentPhoto' />
+                {
+                    data.photo !== "https://res.cloudinary.com/jossyjoe/image/upload/v1606258324/UserIcon_tmu1v6.jpg" ?
+                    <img src={data?.photo} alt='student img' className='studentPhoto' />:
+                    <div className='studentPhoto'></div>
+                }
+
             </div>
         </div>
     )

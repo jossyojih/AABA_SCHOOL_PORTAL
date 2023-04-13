@@ -1,7 +1,7 @@
 import React from 'react'
 import { useStateValue } from '../StateProvider';
 
-function SelectClass({ stdClass, setStdClass, section, step, setStep,select,New }) {
+function SelectClass({ stdClass, setStdClass, section, step, setStep, select, New }) {
     const [{ user }, dispatch] = useStateValue()
     return (
 
@@ -11,7 +11,7 @@ function SelectClass({ stdClass, setStdClass, section, step, setStep,select,New 
             <select className="form-control" name="class" id="class" onChange={(e) => {
                 setStdClass(e.target.value);
 
-            }} value={stdClass} disabled={(user?.role ==="staff"&&!select)?true:false}>
+            }} value={stdClass} disabled={(user?.role === "staff" && !select) ? true : false}>
                 <option value="">Select Class</option>
                 {
                     (section === "Creche") && <>
@@ -42,6 +42,8 @@ function SelectClass({ stdClass, setStdClass, section, step, setStep,select,New 
                 {
                     (section === "Upper-Grade") && <>
                         <option value="Primary4">Primary 4</option>
+                        <option value="Primary4A">Primary 4A</option>
+                        <option value="Primary4B">Primary 4B</option>
                         <option value="Primary5">Primary 5</option>
                         <option value="Primary6">Primary 6</option>
                     </>
@@ -49,6 +51,8 @@ function SelectClass({ stdClass, setStdClass, section, step, setStep,select,New 
                 {
                     (section === "Secondary") && <>
                         <option value="JSS1">JSS 1</option>
+                        <option value="JSS1(Gold)">JSS 1 (Gold)</option>
+                        <option value="JSS1(Diamond)">JSS 1 (Diamond)</option>
                         <option value="JSS2">JSS 2</option>
                         <option value="JSS3">JSS 3</option>
                     </>
@@ -65,9 +69,13 @@ function SelectClass({ stdClass, setStdClass, section, step, setStep,select,New 
                         <option value="Primary2">Primary 2</option>
                         <option value="Primary3">Primary 3</option>
                         <option value="Primary4">Primary 4</option>
+                        <option value="Primary4A">Primary 4A</option>
+                        <option value="Primary4B">Primary 4B</option>
                         <option value="Primary5">Primary 5</option>
                         <option value="Primary6">Primary 6</option>
                         <option value="JSS1">JSS 1</option>
+                        <option value="JSS1(Gold)">JSS 1 (Gold)</option>
+                        <option value="JSS1(Diamond)">JSS 1 (Diamond)</option>
                         <option value="JSS2">JSS 2</option>
                         <option value="JSS3">JSS 3</option>
                     </>

@@ -5,10 +5,11 @@ import ComputeScores from '../ComputeScores';
 import { useParams, useHistory } from 'react-router-dom'
 import { HOST_URL } from '../../../../config'
 import { useQuery, usePaginatedQuery } from 'react-query'
+import AddSubject from './AddSubject';
 
 const fetchStudentProfile = async (key, id) => {
-  if(!id) return
-    const res = await fetch(`${HOST_URL}/api/users/student-result/${id}`, {
+  if (!id) return
+  const res = await fetch(`${HOST_URL}/api/users/student-result/${id}`, {
     headers: {
       "Authorization": "Bearer " + localStorage.getItem("jwt")
     }
@@ -34,21 +35,27 @@ const EditResult = () => {
   useEffect(() => {
 
     if (!data) return
-
+    console.log(data.stdDetails)
     const result = {
-        resultId:data.result?._id,
+      resultId: data.result?._id,
       Id: data.stdDetails?._id,
       firstname: data.stdDetails?.firstname,
       lastname: data.stdDetails?.lastname,
       year: data.result?.year,
       term: data.result?.term,
-      class: data.stdDetails?.stdClass
+      class: data.stdDetails?.stdClass,
+      section:data.stdDetails?.section
     }
 
     setStudentData(result)
     setScores(data.result?.scores)
 
   }, [data])
+
+  useEffect(() => {
+    console.log(scores)
+  }, [scores])
+
 
 
   const nextStep = (e) => {
@@ -69,11 +76,11 @@ const EditResult = () => {
     const response = await fetch(`${HOST_URL}/api/staff/student-result`, {
       method: 'post',
       headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer " + localStorage.getItem("jwt")
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + localStorage.getItem("jwt")
       },
       body: JSON.stringify({
-          resultId:studentData.resultId,
+        resultId: studentData.resultId,
         id: studentData.Id,
         scores,
         total,
@@ -85,19 +92,19 @@ const EditResult = () => {
         stdClass: studentData.class
 
       })
-  })
+    })
 
-  const data = await response.json()
-  console.log(data)
-       if (data.error) {
-          setIsLoading(false)
-          alert(data.error)
-        } else {
-          console.log(data)
-          setIsLoading(false)
-          alert('Result saved Succesfully')
-          history.push(`/student/result/${id}`)
-        }
+    const data = await response.json()
+    console.log(data)
+    if (data.error) {
+      setIsLoading(false)
+      alert(data.error)
+    } else {
+      console.log(data)
+      setIsLoading(false)
+      alert('Result saved Succesfully')
+      history.push(`/student/result/${id}`)
+    }
 
   }
   return (step === 1) ? (
@@ -108,7 +115,7 @@ const EditResult = () => {
       prevStep={prevStep}
       nextStep={nextStep}
     />
-  ) :
+  ) : (step === 2) ?
     <ConfirmScores
       saveResult={saveResult}
       data={data}
@@ -129,8 +136,12 @@ const EditResult = () => {
       setStep={setStep}
     // result={result}
     //setResult={setResult}
+    /> : <AddSubject
+      scores={scores}
+      setScores={setScores}
+      studentData={studentData}
+      setStep={setStep}
     />
-
 
 
 

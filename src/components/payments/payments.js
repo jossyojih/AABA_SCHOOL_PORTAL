@@ -234,7 +234,7 @@ function PaymentsPage() {
                                     {data.map(payments => {
                                         return (
                                             <tr key={payments._id}>
-                                                <td style={{ cursor: 'pointer' }} onClick={() => history.push(`/adminportal/studentprofile`)}>{payments.studentDetails.firstname} {payments.studentDetails.middlename} {payments.studentDetails.lastname}</td>
+                                                <td style={{ cursor: 'pointer' }} onClick={() => history.push(`/accountportal/studentprofile/${payments.studentDetails._id}`)}>{payments.studentDetails.firstname} {payments.studentDetails.middlename} {payments.studentDetails.lastname}</td>
                                                 <td>{payments.stdClass}</td>
                                                 <td>{payments.term === 1 ? 'First' : payments.term === 2 ? 'Second' : 'Third'}</td>
                                                 <td><span style={{ textDecoration: 'line-through', textDecorationStyle: 'double' }}>N</span> {payments.paymentInfo.schoolFees || '---'}</td>

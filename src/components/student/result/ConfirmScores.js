@@ -124,7 +124,8 @@ function ConfirmScores({scores,setScores,total,setTotal,average,setAverage,nextS
              </div>
              </div>
              <div className='confirmBtn'>
-                <button onClick={prevStep} className='btn btn-primary btn-block'>Go Back</button>
+                <button onClick={prevStep} className='btn btn-primary btn-block mr-3'>Go Back</button>
+                <button onClick={nextStep} className='btn btn-primary btn-block mr-3'>Add Subject</button>
                 {isLoading ?  <button  className='btn btn-primary btn-block'> <Loader type="TailSpin" color="#00BFFF" height={20} width={20} /> </button>:
                 <button onClick={(e)=>saveResult(e)} className='btn btn-primary btn-block'>Submit</button>
                 }

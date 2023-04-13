@@ -6,8 +6,6 @@ import { useStateValue } from './StateProvider';
 import { actionTypes } from './reducer';
 //Normal Imports
 
-import Navbar from './components/navbar/Navbar';
-
 import Login from './pages/login/Login'
 import NewStaff from './pages/Registration/NewStaff';
 import AdminPortal from './pages/portal/admin/AdminPortal';
@@ -83,6 +81,7 @@ function Layouts() {
     }
 
   }, [])
+  
   return (
     <Switch>
       <Route path="/accountportal" component={AccountPortal} />
@@ -97,8 +96,6 @@ function Layouts() {
 
 function App() {
   
-
-
   return (
     <div className="Container-fluid">
 

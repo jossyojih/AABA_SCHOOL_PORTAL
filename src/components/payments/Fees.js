@@ -65,7 +65,7 @@ const Fees = () => {
       <h4 className='feesAndPayment_stdName'>Student Name: {studentDetails?.firstname} {studentDetails?.lastname}</h4>
       <h5>Section: {studentDetails?.sex}</h5>
       <h5>Class: {studentDetails?.stdClass}</h5>
-      <h5>Session: {`${sessionDetails?.year}/${sessionDetails?.year + 1}`}</h5>
+      <h5>Session: {`${sessionDetails?.year - 1}/${sessionDetails?.year}`}</h5>
       <h5>Term: {sessionDetails?.term}{sessionDetails?.term === 1 ? 'st' : sessionDetails?.term === 2 ? 'nd' : 'rd'}</h5>
 
 

@@ -138,7 +138,7 @@ function SchoolCalendar() {
 
 
                         </select>
-                        : <span>{`${year}/${year + 1}`}
+                        : <span>{`${year-1}/${year}`}
                             <span style={{ cursor: 'pointer' }} className='text-primary ml-5' onClick={() => setChangeYear(true)}>edit</span></span>
                     }
                 </div>

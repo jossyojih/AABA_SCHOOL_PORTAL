@@ -54,12 +54,12 @@ function StudentResult() {
     const { data, status } = useQuery(['StudentResult', id], fetchStudentResult)
 
     useEffect(() => {
-        if(!data) return
+        if (!data) return
         // Store the current Route to prevent page refreshing to '/'
         localStorage.setItem("route", `/studentportal/result/${id}`)
 
         if (!data?.result) {
-      
+
             alert('This student has no result for this term yet')
             setIsLoading(false)
 
@@ -72,7 +72,6 @@ function StudentResult() {
             }
 
         } else if (user?.role !== 'student') {
-            console.log(data.result)
             setResult(data.result)
             setScores(data.result?.scores)
             setStudentDetails(data.stdDetails)
@@ -101,7 +100,6 @@ function StudentResult() {
         const cloudData = await res.json()
         const url = cloudData.url
         const newUrl = url.slice(0, -3) + 'png'
-        console.log(newUrl)
 
         const response = await fetch(`${HOST_URL}/api/staff/student-result-image`, {
             method: 'put',
@@ -200,6 +198,7 @@ function StudentResult() {
                                 </thead>
                                 <tbody>
                                     {scores.map((score, i) => {
+
                                         return (
                                             <>
                                                 {(score.total !== 0) &&
@@ -212,7 +211,15 @@ function StudentResult() {
                                                         <td>{score.total}</td>
                                                         <td>{score.grade}</td>
                                                         <td>{score.remark}</td>
-                                                        <td>{score.total === 100 ? 1 : score.subjectPosition}{(score.subjectPosition === 1) || (score.total === 100) ? 'st' : score.subjectPosition === 2 ? 'nd' : score.subjectPosition === 3 ? 'rd' : 'th'}</td>
+                                                        {/* If a student scores 100 make also first position inthat subject */}
+                                                        <td>{score.total === 100 ? 1 : score.subjectPosition}
+                                                            {/* Add st for numbers ending with 1
+                                                        Add "nd" for numbers ending with 2
+                                                        Add "3rd" for numbers ending with 3
+                                                        */}
+                                                            {(score.subjectPosition === 1) || (score.total === 100) || (score.subjectPosition === 21) || (score.subjectPosition === 31) || (score.subjectPosition === 41) ? 'st' :
+                                                                score.subjectPosition === 2 || score.subjectPosition === 22 || score.subjectPosition === 32 || score.subjectPosition === 42 ? 'nd' :
+                                                                    score.subjectPosition === 3 || score.subjectPosition === 23 || score.subjectPosition === 33 || score.subjectPosition === 43 ? 'rd' : 'th'}</td>
                                                         <td>{score.classAverage}</td>
                                                         <td>{score.classHigh}</td>
                                                         <td>{score.classLow}</td>
@@ -245,10 +252,10 @@ function StudentResult() {
                         </div>
                         <div className='studentResult_displayResult_right'>
                             <div className='attendanceSummary'>
-                                {/* <StudentAttendanceSummary
-                         result={result}
-                         id={id}
-                     /> */}
+                                <StudentAttendanceSummary
+                                    result={result}
+                                    id={id}
+                                />
                                 <AffectiveDomain
                                     result={result}
                                 />
@@ -268,13 +275,13 @@ function StudentResult() {
                     </div>
                     {((user?.role !== 'student') && preview === false) &&
                         <>
-                            <button className="btn btn-primary" style={{ marginLeft: '20px' }} onClick={(e) => history.push(`/${studentDetails.section === 'Secondary' ? 'editsecresult' : 'editresult'}/${id}`)}>Edit Scores</button>
-                            {((user?.role === 'admin' || user?.role === 'super-admin') && preview === false) && <button className="btn btn-primary" style={{ marginLeft: '20px' }} onClick={(e) => history.push(`/adminportal/head_teacher_remarks/${id}`)}>HM Remarks</button>}
-                            <button className="btn btn-primary" style={{ marginLeft: '20px' }} onClick={(e) => history.push(`/staffportal/teachercomment/${id}`)}>Edit Remarks</button>
-                            <button className="btn btn-primary" style={{ marginLeft: '20px' }} onClick={(e) => history.push(`/staffportal/affective_domain/${id}`)}>Edit AffectiveDomain</button>
-                            {/* <button className="btn btn-primary" style={{ marginLeft: '20px' }} onClick={(e) => history.push(`/staffportal/computestdattendance/${id}`)}>Edit Attendance</button> */}
-                            <button className="btn btn-primary" style={{ marginLeft: '20px' }} onClick={(e) => history.push(`/${user?.role === 'staff' ? 'staffportal' : 'adminportal'}/stdlist`)}>Done</button>
-                            <button className="btn btn-primary" style={{ marginLeft: '20px' }} onClick={(e) => setPreview(true)}>Preview</button>
+                            <button className="btn btn-primary" style={{ marginLeft: '15px' }} onClick={(e) => history.push(`/${studentDetails.section === 'Secondary' ? 'editsecresult' : 'editresult'}/${id}`)}>Edit Scores</button>
+                            {((user?.role === 'admin' || user?.role === 'super-admin') && preview === false) && <button className="btn btn-primary" style={{ marginLeft: '10px' }} onClick={(e) => history.push(`/adminportal/head_teacher_remarks/${id}`)}>HM Remarks</button>}
+                            <button className="btn btn-primary" style={{ marginLeft: '15px' }} onClick={(e) => history.push(`/staffportal/teachercomment/${id}`)}>Edit Remarks</button>
+                            <button className="btn btn-primary" style={{ marginLeft: '15px' }} onClick={(e) => history.push(`/staffportal/affective_domain/${id}`)}>Edit AffectiveDomain</button>
+                            <button className="btn btn-primary" style={{ marginLeft: '15px' }} onClick={(e) => history.push(`/staffportal/computestdattendance/${id}`)}>Edit Attendance</button>
+                            <button className="btn btn-primary" style={{ marginLeft: '15px' }} onClick={(e) => history.push(`/${user?.role === 'staff' ? 'staffportal' : 'adminportal'}/stdlist`)}>Done</button>
+                            <button className="btn btn-primary" style={{ marginLeft: '10px' }} onClick={(e) => setPreview(true)}>Preview</button>
                             {user?.role === 'admin' &&
                                 <>
                                     <input type="file" accept="application/pdf" id="input" onChange={e => updatePic(e, e.target.files[0])} />
@@ -303,11 +310,11 @@ function StudentResult() {
             {user?.role === 'student' &&
                 <div className='student_result_image'>
                     {
-                        status==='loading' ? 
-                        <div className="alert alert-primary" role="alert" style={{ display: 'flex',alignItems:'center',justifyContent:'center' }}>
-                            <Loader type="TailSpin" color="#FFF" height={20} width={20} /> <span style={{ marginLeft:'1rem'}}> Loading... Please wait</span>
-                        </div> :
-                        <img src={result.resultImage} alt='student result' />
+                        status === 'loading' ?
+                            <div className="alert alert-primary" role="alert" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                <Loader type="TailSpin" color="#FFF" height={20} width={20} /> <span style={{ marginLeft: '1rem' }}> Loading... Please wait</span>
+                            </div> :
+                            <img src={result.resultImage} alt='student result' />
                     }
 
                 </div>
