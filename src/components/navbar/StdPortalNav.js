@@ -2,12 +2,14 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { useStateValue } from '../../StateProvider';
 
-function StdPortalNav({id,profile}) {
+function StdPortalNav({ id, profile }) {
     const [{ user }, dispatch] = useStateValue()
     return (
         <div className='profile_nav'>
             {
-                (user?.role === 'admin' || user?.role === 'accountant') && <Link to={`/accountportal/studentfees/${id}`} className="collapse-item" >Fees & payment |</Link>
+                (user?.role === 'super-admin' || user?.role === 'admin') ?
+                    <Link to={`/adminportal/studentfees/${id}`} className="collapse-item" >Fees & payment |</Link> :
+                    user?.role === 'accountant' && <Link to={`/accountportal/studentfees/${id}`} className="collapse-item" >Fees & payment |</Link>
             }
             {
                 (user?.role !== 'student') &&

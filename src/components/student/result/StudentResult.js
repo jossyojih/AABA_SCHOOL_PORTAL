@@ -238,6 +238,8 @@ function StudentResult() {
                                     average={result?.average}
                                     grade={result?.grade}
                                     scale={result?.scale}
+                                    classHigh = {result?.class_highest_average}
+                                    classLow = {result?.class_lowest_average}
                                 />
                                 <GradeAnalysis
                                     scores={result?.scores}

@@ -21,7 +21,7 @@ function BroadSheet() {
 
         const staff = JSON.parse(localStorage.getItem("staff"))
         if (staff) {
-        
+
             if (staff.classTeacher !== stdClass)
                 return alert('You dont have permision to view this class')
 
@@ -45,11 +45,25 @@ function BroadSheet() {
         if (!stdClass) {
             return alert('No Class Selected')
         }
+        console.log(result)
+        // Initialize variables to keep track of highest and lowest averages
+        let highestAverage = Number.MIN_SAFE_INTEGER;
+        let lowestAverage = Number.MAX_SAFE_INTEGER;
+
+        // Calculate highest and lowest averages
+        for (const obj of result) {
+            const average = obj.average;
+            highestAverage = Math.max(highestAverage, average);
+            lowestAverage = Math.min(lowestAverage, average);
+        }
 
         setIsLoading(true)
         for (let i = 0; i < result.length; i++) {
+
             const set = result
             set[i].position = i + 1
+            set[i].class_highest_average = highestAverage
+            set[i].class_lowest_average = lowestAverage
 
             fetch(`${HOST_URL}/api/users/student-result-update/${set[i]._id}`, {
                 method: 'put',
@@ -124,7 +138,7 @@ function BroadSheet() {
 
             const c = scores.filter((x) => x.subject === subject[i]).sort((a, b) => a.total < b.total ? 1 : -1)
             const classHigh = c[0].total
-            const classLow = c[c.length-1].total
+            const classLow = c[c.length - 1].total
             c.map((x, i) => {
                 x.classHigh = classHigh;
                 x.classLow = classLow
@@ -135,6 +149,7 @@ function BroadSheet() {
             //console.log(b)
             // console.log(result)
         }
+
         // setResult(result)
 
     }, [result])

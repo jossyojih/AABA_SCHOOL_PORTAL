@@ -94,12 +94,12 @@ function StudentList() {
                 </div>
             }
 
-           
-                <SelectClass
-                    section={''}
-                    stdClass={stdClass}
-                    setStdClass={setStdClass}
-                />
+
+            <SelectClass
+                section={''}
+                stdClass={stdClass}
+                setStdClass={setStdClass}
+            />
 
             <StdList
                 isLoading={isLoading}

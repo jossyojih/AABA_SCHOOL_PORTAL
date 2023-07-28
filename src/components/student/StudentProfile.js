@@ -32,14 +32,14 @@ function StudentProfile() {
 
     useEffect(() => {
     
-        localStorage.setItem("route", `/studentportal/studentprofile/${id}`)
+        // localStorage.setItem("route", `/studentportal/studentprofile/${id}`)
     }, [])
 
 
     useEffect(() => {
 
         if (!data) return
-       
+console.log(data)
         setProfile(data.student)
 
     }, [data])
