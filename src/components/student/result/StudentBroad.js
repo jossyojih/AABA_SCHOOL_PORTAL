@@ -132,7 +132,8 @@ function BroadSheet() {
         for (let i = 0; i < subject.length; i++) {
             const a = scores.filter((x) => x.subject === subject[i]).map(x => x.total).reduce((acc, x) => acc + x)
             averages.push((a / calc.length).toFixed(1))
-            calc.map((sub) => (sub[i].classAverage = averages[i]))
+        
+            calc.map((sub) =>  sub[i] && (sub[i].classAverage = averages[i]))
 
             //  Compute class High and Low for each student.
 

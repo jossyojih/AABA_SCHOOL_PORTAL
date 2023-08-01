@@ -21,7 +21,7 @@ import StaffpaymentList from '../../../components/salary/StaffpaymentList';
 import UpdateSalary from '../../../components/salary/UpdateSalary';
 import FinancialSummary from './FinancialSummary';
 import ViewSalaries from '../../../components/salary/ViewSalaries';
-
+import SearchStudent from '../../../components/Reuseables/SearchStudent';
 
 const AccountPortal = (props) => {
 
@@ -286,7 +286,7 @@ const AccountPortal = (props) => {
                             </button>
 
 
-                            {/* <SearchStudent /> */}
+                            <SearchStudent />
 
 
                             <ul className="navbar-nav ml-auto">
