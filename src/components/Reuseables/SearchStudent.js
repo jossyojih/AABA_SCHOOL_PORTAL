@@ -7,10 +7,11 @@ import { useHistory } from 'react-router-dom'
 import './Reuseables.css'
 import Autosuggest from 'react-autosuggest';
 import { Link } from 'react-router-dom'
-
+import { useStateValue } from '../../StateProvider';
 
 function SearchStudent({ handleSearchFocus, handleSearchBlur }) {
     //   const [{user,showTopNav}, dispatch ] = useStateValue ()
+    const [{ user }, dispatch] = useStateValue()
     const history = useHistory()
     const [suggestions, setSuggestions] = useState([])
     const [search, setSearch] = useState('')
@@ -24,6 +25,7 @@ function SearchStudent({ handleSearchFocus, handleSearchBlur }) {
 
     useEffect(() => {
         resizeWindow();
+        console.log(user)
         window.addEventListener("resize", resizeWindow);
         return () => window.removeEventListener("resize", resizeWindow);
     }, []);
@@ -67,7 +69,7 @@ function SearchStudent({ handleSearchFocus, handleSearchBlur }) {
     const renderSuggestion = suggestion => (
         <div className='suggestion_result'>
 
-            <Link to={`/adminportal/studentprofile/${suggestion._id}`}>
+            <Link to={`/${user.role === "accountant" ? "accountportal" : "adminportal"}/studentprofile/${suggestion._id}`}>
                 <img src={suggestion.photo} className='suggestion_result_image' alt='' />
                 {suggestion.firstname} {suggestion.middlename} {suggestion.lastname}
             </Link>

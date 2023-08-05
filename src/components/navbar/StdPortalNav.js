@@ -12,7 +12,7 @@ function StdPortalNav({ id, profile }) {
                     user?.role === 'accountant' && <Link to={`/accountportal/studentfees/${id}`} className="collapse-item" >Fees & payment |</Link>
             }
             {
-                (user?.role !== 'student') &&
+                (user?.role === 'super-admin' || user?.role === "admin" || user?.role ==="staff") &&
                 <>
                     <Link to={`/${user?.role === 'staff' ? 'staffportal' : 'adminportal'}/studentbooks/${id}`} className="collapse-item" >Book List |</Link>
                     <Link to={`/${user?.role === 'staff' ? 'staffportal' : 'adminportal'}/studentattendance/${id}`} className="collapse-item" >Attendance</Link>|

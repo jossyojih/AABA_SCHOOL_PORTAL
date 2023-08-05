@@ -238,8 +238,8 @@ function StudentResult() {
                                     average={result?.average}
                                     grade={result?.grade}
                                     scale={result?.scale}
-                                    classHigh = {result?.class_highest_average}
-                                    classLow = {result?.class_lowest_average}
+                                    classHigh={result?.class_highest_average}
+                                    classLow={result?.class_lowest_average}
                                 />
                                 <GradeAnalysis
                                     scores={result?.scores}
@@ -284,7 +284,7 @@ function StudentResult() {
                             <button className="btn btn-primary" style={{ marginLeft: '15px' }} onClick={(e) => history.push(`/staffportal/computestdattendance/${id}`)}>Edit Attendance</button>
                             <button className="btn btn-primary" style={{ marginLeft: '15px' }} onClick={(e) => history.push(`/${user?.role === 'staff' ? 'staffportal' : 'adminportal'}/stdlist`)}>Done</button>
                             <button className="btn btn-primary" style={{ marginLeft: '10px' }} onClick={(e) => setPreview(true)}>Preview</button>
-                            {user?.role === 'admin' &&
+                            {(user?.role === 'admin' || user?.role === "staff") &&
                                 <>
                                     <input type="file" accept="application/pdf" id="input" onChange={e => updatePic(e, e.target.files[0])} />
                                     <div className="label upload_result_label">

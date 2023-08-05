@@ -105,18 +105,18 @@ const Fees = () => {
               </tr>
 
               <tr>
-                <td>School Fees</td><td className='d-none d-md-block'><span>N</span>{sectionFees?.schoolFees}</td><td><span>N</span> {fees?.schoolFees}</td><td>{sectionFees?.schoolFees - fees?.schoolFees}</td><td>{fees?.schoolFeesRemark}</td>
+                <td>School Fees</td><td className='d-none d-md-block'><span>N</span>{sectionFees?.schoolFees}</td><td><span>N</span> {fees?.schoolFees}</td><td>{fees?.schoolFeesRemark === "Incomplete Payment" ? (fees?.sectionFees?.schoolFees - fees?.schoolFees) : 0}</td><td>{fees?.schoolFeesRemark}</td>
               </tr>
 
               <tr>
-                <td>Uniform Fee</td><td className='d-none d-md-block'><span>N</span>{(studentDetails?.sex === "male") ? sectionFees?.maleUniform : sectionFees?.femaleUniform}</td><td><span>N</span> {fees?.uniform}</td><td>{(studentDetails?.sex === "male") ? (sectionFees?.maleUniform - fees?.uniform) : (sectionFees?.femaleUniform - fees?.uniform)}</td><td>{fees.uniformRemark}</td>
+                <td>Uniform Fee</td><td className='d-none d-md-block'><span>N</span>{(studentDetails?.sex === "male") ? sectionFees?.maleUniform : sectionFees?.femaleUniform}</td><td><span>N</span> {fees?.uniform}</td><td>{fees?.uniformRemark === "Incomplete Payment" ? ((studentDetails?.sex === "male") ? (sectionFees?.maleUniform - fees?.uniform) : (sectionFees?.femaleUniform - fees?.uniform)) : 0}</td><td>{fees.uniformRemark}</td>
               </tr>
 
               <tr>
-                <td>Text Books</td><td className='d-none d-md-block'><span>N</span>{sectionFees?.textBooks}</td><td><span>N</span>{fees?.books}</td><td>{sectionFees?.textBooks - fees?.books}</td><td>{fees?.booksRemark}</td>
+                <td>Text Books</td><td className='d-none d-md-block'><span>N</span>{sectionFees?.textBooks}</td><td><span>N</span>{fees?.books}</td><td>{fees?.booksRemark === "Incomplete Payment" ? (fees?.bookssectionFees?.textBooks - fees?.books) : 0}</td><td>{fees?.booksRemark}</td>
               </tr>
               <tr>
-                <td>School Bus</td><td className='d-none d-md-block'><span>N</span>{sectionFees?.schBus}</td><td><span>N</span>{fees?.schBus}</td><td>{fees?.schBusRemark !=="Not Applicable" && (sectionFees?.schBus - fees?.schBus)}</td><td>{fees?.schBusRemark}</td>
+                <td>School Bus</td><td className='d-none d-md-block'><span>N</span>{sectionFees?.schBus}</td><td><span>N</span>{fees?.schBus}</td><td>{fees?.schBusRemark === "Incomplete Payment" ? (sectionFees?.schBus - fees?.schBus):0}</td><td>{fees?.schBusRemark}</td>
               </tr>
               <tr>
                 <td colSpan={2}>Total Paid</td><td className='text-primary'><span>N</span>{fees?.schBus + fees?.registration + fees?.schoolFees + fees?.uniform + fees?.books}</td><td className='d-none d-md-block'>{ }</td>
