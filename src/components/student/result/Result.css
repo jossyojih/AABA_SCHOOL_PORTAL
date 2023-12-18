@@ -1,11 +1,13 @@
-.student_result_image{
+.student_result_image {
   margin-top: -2rem !important;
   width: 100%;
   height: auto;
 }
-.student_result_image img{
+
+.student_result_image img {
   width: 100%;
 }
+
 .studentResult {
   border: 1px solid lightgray;
   margin: 0 auto;
@@ -13,16 +15,19 @@
   box-shadow: 4px 4px 4px 4px rgba(50, 50, 50, 0.25);
   margin-top: 0rem;
 }
+
 .studentResult h5 {
   font-weight: 800;
   text-align: center;
   text-decoration: underline;
   margin-top: -10px;
 }
+
 .studentInfo {
   margin-bottom: 30px;
   margin-top: 30px;
 }
+
 .studentInfo div {
   margin: -5px auto;
   display: flex;
@@ -30,6 +35,7 @@
   justify-content: space-between;
   width: 90%;
 }
+
 .studentInfo div h4 {
   text-align: justify !important;
   font-weight: 800;
@@ -37,15 +43,19 @@
   /* margin-left: 50px;
  margin-right: 50px; */
 }
+
 .studentInfo .center1 {
   margin-left: 100px;
 }
+
 .studentInfo .center2 {
   margin-left: 0px;
 }
+
 .studentInfo .center3 {
   margin-left: 10px;
 }
+
 .studentResult_displayResult {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -56,15 +66,18 @@
   margin: 10px 20px 20px 20px !important;
   border-color: #000 !important;
 }
+
 .studentResult_displayResult table.table-bordered {
   border: 1px solid black;
   margin-top: 20px;
 }
-.studentResult_displayResult table.table-bordered > thead > tr > th {
+
+.studentResult_displayResult table.table-bordered>thead>tr>th {
   border: 1px solid black;
 }
-.studentResult_displayResult table.table-bordered > tbody > tr > td,
-.studentResult_displayResult table.table-bordered > tbody > tr > th {
+
+.studentResult_displayResult table.table-bordered>tbody>tr>td,
+.studentResult_displayResult table.table-bordered>tbody>tr>th {
   border: 1px solid black;
 }
 
@@ -74,11 +87,13 @@
   background-color: #e0e0e0;
   padding: 10px;
 }
+
 .studentResult_displayResult table td {
   font-weight: 600;
   font-size: 12px;
   padding: 5px;
 }
+
 table.gradeAnalysis td {
   font-weight: 600;
   font-size: 12px;
@@ -89,150 +104,172 @@ table.gradeAnalysis td {
 .gradeScale table.right {
   width: 87% !important;
 }
+
 .studentResult_displayResult .resultSummary {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 20px;
 }
-table {
-    border-collapse: collapse;
-    border: none;
-   }
-    th {
-      border: solid 1px black;
-      padding: 2px;
-      font-size: 16px;
-      text-align: center;
-      }
-      td {
-      border: solid 1px black;
-      padding: 3px;
-      font-size: 14px;
-      }  
 
-      .BroadSheet th,.BroadSheet td{
-        font-size: 12px;
-      }
-      .editResult table.table-bordered{
-        border:1px solid black;
-        margin-top:20px;
-        margin: 20px;
-        width: 100%;
-      }
-      .editResult table.table-bordered > thead > tr > th,
-      .computeResult table.table-bordered > thead > tr > th
-      {
-        border:1px solid black;
-        padding: 5px;
-      }
-      .editResult table.table-bordered > tbody > tr > td,
-      .editResult table.table-bordered > tbody > tr > th,
-      .computeResult table.table-bordered > tbody > tr > td,
-      .computeResult table.table-bordered > tbody > tr > th{
-        border:1px solid black;
-        padding: 5px;
-      }
-      .editResult,.computeResult{
-        max-width: 90%;
-        margin: 0 auto;
-       
-      }
-      .editResult_header,
-      .computeResult_header
-      {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-      .editResult_displayResult,
-      .computeResult_displayResult
-      {
-        width: 960px !important;
-        display: flex;
-        align-items: flex-start;
-      }
+table {
+  border-collapse: collapse;
+  border: none;
+}
+
+th {
+  border: solid 1px black;
+  padding: 2px;
+  font-size: 16px;
+  text-align: center;
+}
+
+td {
+  border: solid 1px black;
+  padding: 3px;
+  font-size: 14px;
+}
+
+.BroadSheet th,
+.BroadSheet td {
+  font-size: 12px;
+}
+
+.editResult table.table-bordered {
+  border: 1px solid black;
+  margin-top: 20px;
+  margin: 20px;
+  width: 100%;
+}
+
+.editResult table.table-bordered>thead>tr>th,
+.computeResult table.table-bordered>thead>tr>th {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.editResult table.table-bordered>tbody>tr>td,
+.editResult table.table-bordered>tbody>tr>th,
+.computeResult table.table-bordered>tbody>tr>td,
+.computeResult table.table-bordered>tbody>tr>th {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.editResult,
+.computeResult {
+  max-width: 90%;
+  margin: 0 auto;
+
+}
+
+.editResult_header,
+.computeResult_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.editResult_displayResult,
+.computeResult_displayResult {
+  width: 960px !important;
+  display: flex;
+  align-items: flex-start;
+}
+
 .editResult_displayResult_reportSummary>table,
-.computeResult_displayResult_reportSummary>table{
-      /*  width: 300px !important;*/
-        margin-left: 30px !important;
-      }
-.computeResult_displayResult_reportSummary{
+.computeResult_displayResult_reportSummary>table {
+  /*  width: 300px !important;*/
+  margin-left: 30px !important;
+}
+
+.computeResult_displayResult_reportSummary {
   margin-left: 30px !important;
   width: 30%;
 }
-      .computeResult .confirmBtn{
-        display: flex;
-        align-items: center;
-      }
-      .computeResult .confirmBtn .btn{
-        width: 30% !important;
-      }
-  .classBroadSheet{
-    padding: 20px;
-    width: 100vw;
-  }
 
-  .classBroadSheet h1{
-    margin-bottom: 20px;
-  }
+.computeResult .confirmBtn {
+  display: flex;
+  align-items: center;
+}
 
-  .classBroadSheet .form-group{
-    width: 35%;
-  }
-  .classBroadSheet table{
-    margin-bottom: 30px;
-  }
-  .classBroadSheet .buttons{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  /* .classBroadSheet .buttons .btn{
+.computeResult .confirmBtn .btn {
+  width: 30% !important;
+}
+
+.classBroadSheet {
+  padding: 20px;
+  width: 100vw;
+}
+
+.classBroadSheet h1 {
+  margin-bottom: 20px;
+}
+
+.classBroadSheet .form-group {
+  width: 35%;
+}
+
+.classBroadSheet table {
+  margin-bottom: 30px;
+}
+
+.classBroadSheet .buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* .classBroadSheet .buttons .btn{
     width: 45% !important;
   } */
-  .classBroadSheet .buttons .btn-left{
-    width: 30%;
-    margin-right: 1rem;
-  }
-  .form-radio{
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .form-radio label{
+.classBroadSheet .buttons .btn-left {
+  width: 30%;
+  margin-right: 1rem;
+}
+
+.form-radio {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-radio label {
   margin: 0 3rem 0 1rem;
   font-size: large;
   font-weight: 600;
-  }
-  .radio-group{
-    position: absolute;
-    left: 15rem;
+}
 
-  }
-  @media (max-width: 1025px) {
-    .studentResult {
-      /* border: 1px solid lightgray;
+.radio-group {
+  position: absolute;
+  left: 15rem;
+
+}
+
+@media (max-width: 1025px) {
+  .studentResult {
+    /* border: 1px solid lightgray;
       margin: 0 auto; */
-      width: 960px;
-      box-shadow: 4px 4px 4px 4px rgba(50, 50, 50, 0.25);
-      margin-top: 0rem;
-    }
+    width: 960px;
+    box-shadow: 4px 4px 4px 4px rgba(50, 50, 50, 0.25);
+    margin-top: 0rem;
   }
-  @media (max-width: 630px) {
-  .student_result_image{
+}
+
+@media (max-width: 630px) {
+  .student_result_image {
     margin-top: -1rem !important;
   }
 }
+
 @media (max-width: 580px) {
-  .student_result_image{
+  .student_result_image {
     margin-top: -.5rem !important;
   }
 }
+
 @media (max-width: 320px) {
-  .student_result_image{
+  .student_result_image {
     margin-top: 0rem !important;
   }
 }
-
- 

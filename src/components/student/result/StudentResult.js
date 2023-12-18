@@ -86,50 +86,55 @@ function StudentResult() {
 
     }, [data])
 
+
+
     const uploadResult = async () => {
-
-        setIsLoading(true)
-        const data = new FormData();
-        data.append("file", image);
-        data.append("upload_preset", "instaclone")
-        data.append("cloud_name", "jossyjoe")
-        const res = await fetch("https://api.cloudinary.com/v1_1/jossyjoe/image/upload", {
-            method: "post",
-            body: data
-        })
-        const cloudData = await res.json()
-        const url = cloudData.url
-        const newUrl = url.slice(0, -3) + 'png'
-
-        const response = await fetch(`${HOST_URL}/api/staff/student-result-image`, {
-            method: 'put',
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer " + localStorage.getItem("jwt")
-            },
-            body: JSON.stringify({
-                id: result.studentDetails,
-                resultId: result._id,
-                resultImage: newUrl
-
+        try {
+            setIsLoading(true)
+            const data = new FormData();
+            data.append("file", image);
+            data.append("upload_preset", "instaclone")
+            data.append("cloud_name", "jossyjoe")
+            const res = await fetch("https://api.cloudinary.com/v1_1/jossyjoe/image/upload", {
+                method: "post",
+                body: data
             })
-        })
+            console.log(res)
+            const cloudData = await res.json()
+            const url = cloudData.url
+            const newUrl = url.slice(0, -3) + 'png'
+            console.log(newUrl)
 
-        const returnedData = await response.json()
-        if (returnedData.error) {
-            setIsLoading(false)
-            setMessage(returnedData.error)
-            setTimeout(() => {
+            const response = await fetch(`${HOST_URL}/api/staff/student-result-image`, {
+                method: 'put',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem("jwt")
+                },
+                body: JSON.stringify({
+                    id: result.studentDetails,
+                    resultId: result._id,
+                    resultImage: newUrl
+
+                })
+            })
+
+            const returnedData = await response.json()
+            if (returnedData.error) {
+                setIsLoading(false)
+                setMessage(returnedData.error)
+                setTimeout(() => {
+                    handleClose()
+                }, 2000);
+            } else {
+                setIsLoading(false)
                 handleClose()
-            }, 2000);
-        } else {
-            setIsLoading(false)
-            handleClose()
-            alert('Result saved Succesfully')
-            history.push(`/studentportal/result/${id}`)
+                alert('Result saved Succesfully')
+                history.push(`/studentportal/result/${id}`)
+            }
+        } catch (error) {
+            console.log(error)
         }
-
-
     }
 
     useEffect(() => {
@@ -143,7 +148,6 @@ function StudentResult() {
 
     const updatePic = (e, file) => {
         e.preventDefault()
-        console.log(file)
         setImage(file)
 
     }

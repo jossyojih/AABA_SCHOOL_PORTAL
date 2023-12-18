@@ -1,0 +1,222 @@
+.studentResultUpload {
+    color: black !important;
+}
+
+.studentResultUpload .schoolHeader_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+
+.studentResultUpload .schoolHeader_header .logo {
+    margin-top: 20px;
+    width: 100px;
+    height: 90px;
+}
+
+.studentResultUpload .schoolHeader_header .studentPhoto {
+    margin-top: 20px;
+    width: 100px;
+    height: 90px;
+}
+
+.studentResultUpload .schoolHeader_schoolName {
+    text-align: center;
+    line-height: 1.2em;
+
+}
+
+.studentResultUpload .schoolHeader_schoolName h1 {
+    font-weight: 800;
+    font-size: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important;
+}
+
+.studentResultUpload .schoolHeader_schoolName h6 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important;
+    font-weight: 800;
+}
+
+.studentResultUpload .schoolHeader_schoolName p {
+    font-weight: 600 !important;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    font-family: var(--Abel) !important;
+    color: var(--text-gray) !important;
+    font-size: 12px !important;
+    line-height: 1.2em;
+
+}
+
+.schoolHeader_schoolName p span {
+    font-family: var(--Abel) !important;
+    color: blue;
+
+}
+
+.studentResultUpload {
+    border: 1px solid lightgray;
+    margin: 0 auto;
+    width: 750px !important;
+    box-shadow: 4px 4px 4px 4px rgba(50, 50, 50, 0.25);
+    margin-top: 0rem;
+}
+
+.studentResultUpload h5 {
+    font-weight: 800;
+    text-align: center;
+    text-decoration: underline;
+
+}
+
+.studentResultUpload .studentInfo {
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
+
+.studentResultUpload .studentInfo div {
+    margin: -5px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 97%;
+}
+
+.studentResultUpload .studentInfo div h4 {
+    text-align: justify !important;
+    font-weight: 700;
+    font-size: 13px;
+    /* margin-left: 50px;
+   margin-right: 50px; */
+}
+
+.studentResultUpload .studentInfo .center1 {
+    margin-left: 100px;
+}
+
+.studentResultUpload .studentInfo .center2 {
+    margin-left: 0px;
+}
+
+.studentResultUpload .studentInfo .center3 {
+    margin-left: 10px;
+}
+
+.studentResultUpload .studentResult_displayResult {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-column-gap: 0px;
+}
+
+
+.studentResultUploadTable {
+    margin-left: .7rem;
+    margin-top: 10px !important;
+    color: black !important;
+}
+
+.studentResultUpload .studentResult_displayResult table th,
+.studentResultUploadTable th {
+    font-weight: bolder;
+    font-size: 12px;
+    background-color: #e0e0e0;
+    color: black !important;
+    padding: 5px;
+}
+
+.studentResultUpload_displayResult table td,
+.studentResultUploadTable td {
+    font-weight: 600;
+    font-size: 11px !important;
+    padding: 2px !important;
+    color: black !important;
+}
+
+.studentResultUpload table.gradeAnalysis td {
+    font-weight: 600;
+    font-size: 12px;
+    padding: 1px 5px 1px 5px;
+    color: black !important;
+}
+
+.studentResultUpload .studentResult_displayResult .attendanceSummary {
+    width: 87% !important;
+    color: black !important;
+
+}
+
+.studentResultUpload .studentResult_displayResult .attendanceSummary table {
+    margin-bottom: 1px !important;
+
+}
+
+.studentResultUpload .attendanceSummary table td {
+    font-size: 11px;
+    padding: 2px !important;
+    color: black !important;
+
+}
+
+.studentResult_displayResult .resultSummary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 20px;
+    color: black !important;
+}
+
+.studentResultUpload .resultSummary table td {
+    color: black !important;
+
+}
+
+.studentResultUpload .affectiveDomain td {
+    padding: 2px !important;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.studentResultUpload .resultSummary td {
+    padding: 1px 5px !important;
+}
+
+.resultUpload_gradeAnalysis table {
+    width: 90%;
+}
+
+.resultUpload_gradeAnalysis table td {
+    padding: 1px 5px !important;
+    color: black !important;
+}
+
+.studentResultUpload .displayComment {
+    padding: 0 10px !important;
+    margin-top: 5px;
+    color: black !important;
+}
+
+.studentResultUpload .displayComment table th {
+    width: 23%;
+    font-size: 13px !important;
+    padding: 2px 5px !important;
+    color: black !important;
+}
+
+.studentResultUpload .displayComment table td {
+    font-size: 12px !important;
+    font-weight: bold;
+    padding: 2px !important;
+    color: black !important;
+}
+
+.gradeScale .secondary td {
+    font-size: 10px !important;
+    padding: 2px !important;
+}
+
+.secondary-gradeScale {
+    margin-bottom: -20px !important;
+    padding-bottom: 0 !important;
+}

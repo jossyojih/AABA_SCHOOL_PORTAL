@@ -1,11 +1,11 @@
 import React from 'react'
 import { useStateValue } from '../StateProvider';
 
-function SelectClass({ stdClass, setStdClass, section, step, setStep, select, New }) {
+function SelectClass({ stdClass, setStdClass, section, step, setStep, select, New, isUpload }) {
     const [{ user }, dispatch] = useStateValue()
     return (
 
-        <div className="form-group-display">
+        <div className={`${isUpload && "studentResultUpload"} form-group-display`}>
             <label htmlFor="class">Select {New && New} Class</label>
 
             <select className="form-control" name="class" id="class" onChange={(e) => {

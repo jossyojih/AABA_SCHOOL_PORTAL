@@ -25,7 +25,6 @@ function SearchStudent({ handleSearchFocus, handleSearchBlur }) {
 
     useEffect(() => {
         resizeWindow();
-        console.log(user)
         window.addEventListener("resize", resizeWindow);
         return () => window.removeEventListener("resize", resizeWindow);
     }, []);

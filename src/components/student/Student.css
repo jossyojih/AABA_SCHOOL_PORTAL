@@ -2,23 +2,28 @@
   max-width: 935px;
   margin: 0 auto;
 }
+
 .profile .profile_nav {
   width: 500px;
   margin-left: auto !important;
 }
+
 .profile .profile_nav a {
   margin-right: 5px;
   margin-left: 5px;
 }
+
 .profile_top {
   display: flex;
   justify-content: center;
   margin: 50px auto;
   border-bottom: 1px solid grey;
 }
+
 .profile_image {
   margin: -20px 50px 50px 10px;
 }
+
 .profile_image img {
   width: 250px;
   height: 250px;
@@ -28,41 +33,50 @@
 .profile_details {
   margin: 20px 0 0 0;
 }
+
 .profile_details_name {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .studentbooklist .card-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
 .studentbooklist table th {
   text-align: center;
   font-size: 16px;
   font: 800;
 }
+
 .studentbooklist table td {
   font-size: 14px;
   text-align: center;
 }
+
 .studentbooklist table td span {
   text-decoration: line-through;
   text-decoration-style: double;
 }
+
 .profile_details_name h4 {
   margin-right: 30px;
 }
+
 .profile_details_stats {
   margin-top: 20px;
   display: flex;
   margin-bottom: 20px;
   align-items: center;
 }
+
 .profile_details_stats h4 {
   margin-right: 10px;
 }
+
 .business_button,
 .follow_button {
   margin-top: 5px;
@@ -71,6 +85,7 @@
 #input[type="file"] {
   display: none;
 }
+
 .label {
   width: 100%;
   margin-top: -4.5rem;
@@ -79,6 +94,7 @@
   display: flex;
   justify-content: center;
 }
+
 .image-upload {
   margin: auto;
   margin-right: 0.5rem !important;
@@ -94,10 +110,12 @@
 
   z-index: 1;
 }
+
 .addphoto_icon {
   margin: 6px auto;
   font-size: 25px;
 }
+
 .upload_result_label .image-upload {
   margin-top: 2.2rem;
   margin-right: 2.8rem !important;
@@ -114,6 +132,7 @@
 
   z-index: 1;
 }
+
 .loader {
   margin-top: -8.5rem;
   margin-left: 100px;
@@ -127,26 +146,33 @@
 .markattendance .form-group {
   width: 35% !important;
 }
+
+
 .classDailyAttendance_data {
   display: flex;
   align-items: flex-start;
 }
-.classDailyAttendance_data > table {
+
+.classDailyAttendance_data>table {
   width: 70%;
   margin-right: 20px;
 }
+
 .updateBookStatus {
   display: flex;
   align-items: center;
 }
+
 .termAttendance {
   display: flex;
   align-items: flex-start;
 }
-.termAttendance > table {
+
+.termAttendance>table {
   width: 70%;
   margin-right: 20px;
 }
+
 .termAttendance th,
 .termAttendance td {
   font-size: 16px;
@@ -157,27 +183,34 @@
   align-items: center;
   justify-content: space-between;
 }
+
 .markattendance_button .btn {
   margin-right: 10px;
 }
+
 .confirmAttendanceBtn {
   display: flex;
   align-items: center;
 }
+
 .confirmAttendanceBtn .btn {
   width: 30% !important;
 }
+
 .staffList .table th {
   text-align: center;
   font-size: 16px;
 }
+
 .staffList .table td {
   font-size: 16px;
   text-align: center;
 }
+
 .displayComment {
   padding: 0 50px 10px 50px !important;
 }
+
 .displayComment .table th {
   border: solid 1px black;
   width: 20%;
@@ -186,12 +219,23 @@
   text-align: left;
   font-size: 14px;
 }
+
 .displayComment .table td {
   border: solid 1px black;
   padding: 5px;
   font-size: 16px !important;
   text-align: start !important;
 }
+
+.studentResultUpload {
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+.studentResultUpload .form-control {
+  width: 30% !important;
+}
+
 @media (max-width: 768px) {
   .profile_top {
     display: flex;
@@ -202,6 +246,7 @@
     border-bottom: 1px solid grey; */
   }
 }
+
 @media (max-width: 376px) {
 
   .profile_details_name h4 {
@@ -215,8 +260,9 @@
   .profile_details_name h4 {
     font-size: 16px;
     font-weight: bold;
-    
+
   }
+
   .profile_details h5 {
     font-size: 15px;
   }

@@ -7,8 +7,6 @@ import { HOST_URL } from '../../config'
 import SelectSession from '../SelectSession';
 import SelectClass from '../SelectClass';
 
-
-
 function PaymentsPage() {
     const [sort, setSort] = useState('date')
     const [term, setTerm] = useState()

@@ -31,7 +31,7 @@ function StudentProfile() {
     const { data, status } = useQuery(['StudentProfile', id], fetchStudentProfile)
 
     useEffect(() => {
-    
+
         // localStorage.setItem("route", `/studentportal/studentprofile/${id}`)
     }, [])
 
@@ -39,7 +39,6 @@ function StudentProfile() {
     useEffect(() => {
 
         if (!data) return
-console.log(data)
         setProfile(data.student)
 
     }, [data])
@@ -97,7 +96,7 @@ console.log(data)
 
     return (
         <div className='profile' >
-            <StdPortalNav id={id}/>
+            <StdPortalNav id={id} />
 
             {
                 status === 'loading' ?

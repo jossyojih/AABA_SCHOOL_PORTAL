@@ -34,6 +34,7 @@ import UpdateSchoolEvent from '../../../components/SchoolEvent/UpdateSchoolEvent
 import PromoteStudents from './PromoteStudents';
 import SearchStudent from '../../../components/Reuseables/SearchStudent';
 import Fees from '../../../components/payments/Fees';
+import UploadResult from './UploadResult';
 
 const AdminPortal = (props) => {
 
@@ -220,6 +221,7 @@ const AdminPortal = (props) => {
                                 <Link to='/adminportal/markstudentattendance' className="collapse-item">Student Register</Link>
                                 <Link to='/adminportal/classfees' className="collapse-item">Student Fees</Link>
                                 <Link to='/studentbroad' className="collapse-item">Student Result</Link>
+                                <Link to='/adminportal/result-upload' className="collapse-item">Result Upload</Link>
                             </div>
                         </div>
                     </li>
@@ -438,6 +440,8 @@ const AdminPortal = (props) => {
                         <div className="container-fluid">
 
                             <Switch>
+                                <Route path={`${path}/result-upload`} component={UploadResult}
+                                />
                                 <Route path={`${path}/promote-students`} component={PromoteStudents}
                                 />
                                 <Route path={`${path}/updateschoolevents`} component={UpdateSchoolEvent}
