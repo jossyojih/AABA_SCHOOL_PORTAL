@@ -1,0 +1,23 @@
+.bookList h3{
+    margin-bottom: 30px;
+ }
+ .bookList .form-group{
+     width: 35%;
+ }
+ .inputBookList{
+     display: flex;
+     align-items: center;
+ }
+ .inputBookList input{
+     margin: 5px;
+ }
+ .bookList_btn{
+     display: flex;
+     align-items: center;
+     
+ }
+ .bookList_btn .btn{
+     width: 250px !important;
+     margin: 5px;
+ }
+ 

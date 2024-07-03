@@ -1,0 +1,64 @@
+@media (max-width: 768px) {
+    .termAttendance{
+        display: block;
+    }
+}
+@media (max-width: 560px) {
+    .student_term_attendance{
+        width: 100% !important;
+        padding: 1rem;
+    }
+
+    .student_term_attendance table th {
+        text-align: center;
+        font-size: 16px;
+        font: 800;
+        padding: 5px;
+      }
+      .student_term_attendance table td {
+        font-size: 14px;
+        padding: 5px;
+        text-align: center;
+      }
+
+}
+@media (max-width: 395px) {
+    .student_term_attendance{
+        width: 100% !important;
+        padding: 5px;
+    }
+    .student_term_attendance h3{
+        font-size: 20px;
+    }
+    .student_term_attendance h5{
+        font-size: 15px;
+    }
+    .student_term_attendance table {
+      margin-top: 1rem;
+      }
+    .student_term_attendance table th {
+        text-align: center;
+        font-size: 14px;
+        font-weight: 600 !important;
+        padding: 3px;
+      }
+      .student_term_attendance table td {
+        font-size: 12px;
+        padding: 3px !important;
+        text-align: center;
+      }
+
+}
+@media (max-width: 321px) {
+    .student_term_attendance table th {
+        text-align: center;
+        font-size: 12px;
+        font-weight: 900 !important;
+        padding: 3px;
+      }
+      .student_term_attendance table td {
+        font-size: 10px;
+        padding: 3px !important;
+        text-align: center;
+      }
+}

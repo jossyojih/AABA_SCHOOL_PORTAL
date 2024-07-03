@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800");
+* {
+  box-sizing: border-box;
+}
+/*  */
+
+.form-box {
+  margin: 5% auto;
+  width: 70%;
+}
+
+.custom-control-label {
+  font-weight: 400;
+}
+
+.form-group-display {
+  display: flex;
+  align-items: center;
+   justify-content: center;
+  width: 50%;
+  margin-bottom: 1rem;
+}
+.form-group-display label {
+  width: 30%;
+}
+.form-group-display .form-control {
+  width: 75%;
+}
+.reg-datepicker {
+  margin-left: 2rem;
+}
+.student-reg-error {
+  text-align: center;
+}
+.student-reg-container .reg-btn-next {
+  width: 50%;
+  margin-top: 3rem;
+  margin-left: 15rem;
+}
+.registration_btn {
+  display: flex;
+  align-items: center !important;
+  margin-top: 5rem;
+  margin-left: 10rem;
+}
+.registration_btn .btn {
+  width: 10rem;
+}
+.registration_btn .btn-reg-prev {
+  margin-top: 0.35rem;
+  margin-right: 20rem;
+}
+.login-loader {
+  margin: 100px auto 100px 400px !important;
+}
+
+@media only screen and (max-width: 1030px) {
+  .form-box {
+    width: 90%;
+  }
+  .registration_btn {
+    margin-left: 8rem;
+  }
+}
+@media only screen and (max-width: 860px) {
+  .form-box {
+    width: 100%;
+  }
+  .form-group-display {
+    width: 60%;
+  }
+  .reg-datepicker {
+    margin-left: 1.5rem;
+  }
+  .student-reg-container .reg-btn-next {
+    margin-left: 10rem;
+  }
+  .registration_btn {
+    margin-left: 5rem;
+  }
+  .registration_btn .btn-reg-prev {
+    margin-right: 10rem;
+  }
+}
+@media only screen and (max-width: 560px) {
+  .form-group-display {
+    width: 80%;
+  }
+  .student-reg-container .reg-btn-next {
+    margin-left: 7rem;
+  }
+  .registration_btn .btn-reg-prev {
+    margin-right: 5rem;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .form-group-display {
+    width: 100%;
+  }
+    .student-reg-container{
+        padding: 0 !important;
+    }
+  .student-reg-container .reg-btn-next {
+    margin-left: 5rem;
+  }
+  .registration_btn {
+    margin-left: 1rem;
+  }
+  .registration_btn .btn-reg-prev {
+    margin-right: 2rem;
+  }
+}

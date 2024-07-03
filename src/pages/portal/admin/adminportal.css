@@ -1,0 +1,38 @@
+.schoolCalendar {
+    margin: 5% auto;
+    width: 70%;
+
+}
+
+.schoolCalendar .btn {
+    margin: 5% auto;
+    width: 50%;
+
+}
+
+.dropzone-container {
+    width: 300px;
+    /* Adjust the width as needed */
+    height: 300px;
+    /* Set the height to match the width for a square shape */
+    margin: 20px auto;
+    /* Adjust the margin as needed */
+}
+
+.dropzone {
+    width: 100%;
+    height: 100%;
+    border: 2px dashed #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.dropzone p {
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
