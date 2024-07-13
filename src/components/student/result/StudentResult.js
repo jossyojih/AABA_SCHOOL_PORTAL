@@ -31,6 +31,8 @@ function StudentResult() {
     const { id } = useParams()
     const [result, setResult] = useState({})
     const [scores, setScores] = useState([])
+    const [firstTerm, setFirstTerm] = useState([])
+    const [secondTerm, setSecondTerm] = useState([])
     const [studentDetails, setStudentDetails] = useState({})
     const year = new Date().getFullYear()
     const [preview, setPreview] = useState(false)
@@ -57,19 +59,20 @@ function StudentResult() {
         if (!data) return
         // Store the current Route to prevent page refreshing to '/'
         localStorage.setItem("route", `/studentportal/result/${id}`)
+        console.log(data)
 
         if (!data?.result) {
 
             alert('This student has no result for this term yet')
             setIsLoading(false)
 
-            if (user.role === 'super-admin' || user.role === 'admin') {
-                return history.push(`/adminportal/studentprofile/${id}`)
-            } else if (user.role === 'staff') {
-                return history.push(`/staffportal/studentprofile/${id}`)
-            } else {
-                return history.push(`/studentportal/studentprofile/${id}`)
-            }
+            // if (user.role === 'super-admin' || user.role === 'admin') {
+            //     return history.push(`/adminportal/studentprofile/${id}`)
+            // } else if (user.role === 'staff') {
+            //     return history.push(`/staffportal/studentprofile/${id}`)
+            // } else {
+            //     return history.push(`/studentportal/studentprofile/${id}`)
+            // }
 
         } else if (user?.role !== 'student') {
             setResult(data.result)
@@ -80,11 +83,15 @@ function StudentResult() {
         } else {
             setResult(data.result)
             setIsLoading(false)
-
+            ////
+        }
+        if (data?.result.term === 3) {
+            setFirstTerm(data.firstTerm?.scores)
+            setSecondTerm(data.secondTerm?.scores)
         }
 
-
     }, [data])
+
 
 
 
@@ -195,13 +202,28 @@ function StudentResult() {
                                         <th>Remarks</th>
                                         <th>Subject Position</th>
                                         <th>Class Average</th>
-                                        <th>Class High</th>
-                                        <th>Class Low</th>
+                                        {
+                                            // For 3rd term
+                                            result?.term === 3 ?
+                                                <>
+                                                    <th>First Term</th>
+                                                    <th>Second Term</th>
+                                                    <th>Cumm. Average</th>
+                                                </> :
+                                                <>
+                                                    <th>Class High</th>
+                                                    <th>Class Low</th>
+                                                </>
+                                        }
+
                                     </tr>
 
                                 </thead>
                                 <tbody>
                                     {scores.map((score, i) => {
+                                        let firstTermScore = firstTerm.find(item => item.subject == score.subject)?.total
+                                        let secondTermScore = secondTerm.find(item => item.subject == score.subject)?.total
+                                        let cummulative = ((firstTermScore + secondTermScore + score.total) / 3).toFixed(1)
 
                                         return (
                                             <>
@@ -225,8 +247,19 @@ function StudentResult() {
                                                                 score.subjectPosition === 2 || score.subjectPosition === 22 || score.subjectPosition === 32 || score.subjectPosition === 42 ? 'nd' :
                                                                     score.subjectPosition === 3 || score.subjectPosition === 23 || score.subjectPosition === 33 || score.subjectPosition === 43 ? 'rd' : 'th'}</td>
                                                         <td>{score.classAverage}</td>
-                                                        <td>{score.classHigh}</td>
-                                                        <td>{score.classLow}</td>
+
+                                                        {
+                                                            result?.term === 3 ?
+                                                                <>
+                                                                    <td>{firstTermScore}</td>
+                                                                    <td>{secondTermScore}</td>
+                                                                    <td>{cummulative == "NaN" ? "" : cummulative}</td>
+                                                                </> : <>
+                                                                    <td>{score.classHigh}</td>
+                                                                    <td>{score.classLow}</td>
+                                                                </>
+                                                        }
+
                                                     </tr>
                                                 }
                                             </>

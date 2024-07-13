@@ -35,7 +35,7 @@ function StudentAttendanceSummary({ id, result }) {
                     </tr>
                     <tr>
                         <td colSpan='2'>Number Of Times Absent</td>
-                        <td >{absent} </td>
+                        <td >{absent || ""} </td>
                     </tr>
 
                 </tbody>
