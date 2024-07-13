@@ -66,13 +66,13 @@ function StudentResult() {
             alert('This student has no result for this term yet')
             setIsLoading(false)
 
-            // if (user.role === 'super-admin' || user.role === 'admin') {
-            //     return history.push(`/adminportal/studentprofile/${id}`)
-            // } else if (user.role === 'staff') {
-            //     return history.push(`/staffportal/studentprofile/${id}`)
-            // } else {
-            //     return history.push(`/studentportal/studentprofile/${id}`)
-            // }
+            if (user.role === 'super-admin' || user.role === 'admin') {
+                return history.push(`/adminportal/studentprofile/${id}`)
+            } else if (user.role === 'staff') {
+                return history.push(`/staffportal/studentprofile/${id}`)
+            } else {
+                return history.push(`/studentportal/studentprofile/${id}`)
+            }
 
         } else if (user?.role !== 'student') {
             setResult(data.result)
@@ -193,7 +193,11 @@ function StudentResult() {
                                 <thead>
                                     <tr>
                                         <th>Subject</th>
-                                        {/* {studentDetails.section === 'Secondary' && <th>Assignment</th>} */}
+                                        {studentDetails.section === 'Secondary' &&
+                                            <>
+                                                <th>Notebk</th>
+                                                <th>Assign.</th>
+                                            </>}
                                         <th>Test</th>
                                         {/* <th>Project</th> */}
                                         <th>exam</th>
@@ -201,7 +205,7 @@ function StudentResult() {
                                         <th>grade</th>
                                         <th>Remarks</th>
                                         <th>Subject Position</th>
-                                        <th>Class Average</th>
+                                        <th>Class Avg</th>
                                         {
                                             // For 3rd term
                                             result?.term === 3 ?
@@ -229,16 +233,22 @@ function StudentResult() {
                                             <>
                                                 {(score.total !== 0) &&
                                                     <tr key={i}>
-                                                        <td>{score.subject}</td>
-                                                        {/* {studentDetails.section === 'Secondary' && <td>{score.assignment.total}</td>} */}
-                                                        <td>{score.CA.total}</td>
+                                                        <td >{score.subject}</td>
+                                                        {studentDetails.section === 'Secondary' &&
+                                                            <>
+                                                                <td className='text-center'>{score.assignment}</td>
+                                                                <td className='text-center'>{score.notebook}</td>
+                                                            </>
+
+                                                        }
+                                                        <td className='text-center'>{score.CA.total}</td>
                                                         {/* <td>{score.project}</td> */}
-                                                        <td>{score.exam}</td>
-                                                        <td>{score.total}</td>
-                                                        <td>{score.grade}</td>
-                                                        <td>{score.remark}</td>
+                                                        <td className='text-center'>{score.exam}</td>
+                                                        <td className='text-center'>{score.total}</td>
+                                                        <td className='text-center'>{score.grade}</td>
+                                                        <td className='text-center'>{score.remark}</td>
                                                         {/* If a student scores 100 make also first position inthat subject */}
-                                                        <td>{score.total === 100 ? 1 : score.subjectPosition}
+                                                        <td className='text-center'>{score.total === 100 ? 1 : score.subjectPosition}
                                                             {/* Add st for numbers ending with 1
                                                         Add "nd" for numbers ending with 2
                                                         Add "3rd" for numbers ending with 3
@@ -246,17 +256,17 @@ function StudentResult() {
                                                             {(score.subjectPosition === 1) || (score.total === 100) || (score.subjectPosition === 21) || (score.subjectPosition === 31) || (score.subjectPosition === 41) ? 'st' :
                                                                 score.subjectPosition === 2 || score.subjectPosition === 22 || score.subjectPosition === 32 || score.subjectPosition === 42 ? 'nd' :
                                                                     score.subjectPosition === 3 || score.subjectPosition === 23 || score.subjectPosition === 33 || score.subjectPosition === 43 ? 'rd' : 'th'}</td>
-                                                        <td>{score.classAverage}</td>
+                                                        <td className='text-center'>{score.classAverage}</td>
 
                                                         {
                                                             result?.term === 3 ?
                                                                 <>
-                                                                    <td>{firstTermScore}</td>
-                                                                    <td>{secondTermScore}</td>
-                                                                    <td>{cummulative == "NaN" ? "" : cummulative}</td>
+                                                                    <td className='text-center'>{firstTermScore}</td>
+                                                                    <td className='text-center'>{secondTermScore}</td>
+                                                                    <td className='text-center'>{cummulative == "NaN" ? "" : cummulative}</td>
                                                                 </> : <>
-                                                                    <td>{score.classHigh}</td>
-                                                                    <td>{score.classLow}</td>
+                                                                    <td className='text-center'>{score.classHigh}</td>
+                                                                    <td className='text-center'>{score.classLow}</td>
                                                                 </>
                                                         }
 

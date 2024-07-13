@@ -34,16 +34,19 @@ const Result = () => {
 
     if (!data) return
 
-    if(data.hasResult){
+    if (data.hasResult) {
 
       setTimeout(() => {
         return history.push(`/editresult/${id}`)
       }, 500);
-   
+
     }
+
     const scores = data.subjects?.subjects.map(subject => {
       return {
         subject,
+        notebook: 0,
+        assignment: 0,
         CA: {
           first: 0,
           second: 0,
@@ -55,8 +58,8 @@ const Result = () => {
         remark: '',
         subjectPosition: '',
         classAverage: '',
-        classHigh:'',
-        classLow:''
+        classHigh: '',
+        classLow: ''
 
       }
     })
@@ -66,7 +69,8 @@ const Result = () => {
       lastname: data.student?.lastname,
       year: data.calendar?.year,
       term: data.calendar?.term,
-      class: data.student?.stdClass
+      class: data.student?.stdClass,
+      section: data.student?.section
     }
     setStudentData(result)
     setScores(scores)
@@ -92,8 +96,8 @@ const Result = () => {
     const response = await fetch(`${HOST_URL}/api/staff/student-result`, {
       method: 'post',
       headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer " + localStorage.getItem("jwt")
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + localStorage.getItem("jwt")
       },
       body: JSON.stringify({
         id: studentData.Id,
@@ -107,21 +111,21 @@ const Result = () => {
         stdClass: studentData.class
 
       })
-  })
+    })
 
-  const data = await response.json()
+    const data = await response.json()
 
-       if (data.error) {
-          setIsLoading(false)
-          alert(data.error)
-        } else {
-          setIsLoading(false)
-          alert('Result saved Succesfully')
-          setTimeout(() => {
-            history.replace(`/student/result/${id}`)
-          }, 500);
+    if (data.error) {
+      setIsLoading(false)
+      alert(data.error)
+    } else {
+      setIsLoading(false)
+      alert('Result saved Succesfully')
+      setTimeout(() => {
+        history.replace(`/student/result/${id}`)
+      }, 500);
 
-        }
+    }
 
   }
   return (step === 1) ? (

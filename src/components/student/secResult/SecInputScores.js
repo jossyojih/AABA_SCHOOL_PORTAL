@@ -119,7 +119,7 @@ function SecInputScores({ score, scores, setScores, i }) {
             <td>
                 {testTotal}
             </td>
-  
+
             <td>
                 <input
                     type="number"

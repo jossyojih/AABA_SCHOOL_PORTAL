@@ -35,7 +35,6 @@ const EditResult = () => {
   useEffect(() => {
 
     if (!data) return
-    console.log(data.stdDetails)
     const result = {
       resultId: data.result?._id,
       Id: data.stdDetails?._id,
@@ -44,7 +43,7 @@ const EditResult = () => {
       year: data.result?.year,
       term: data.result?.term,
       class: data.stdDetails?.stdClass,
-      section:data.stdDetails?.section
+      section: data.stdDetails?.section
     }
 
     setStudentData(result)

@@ -17,6 +17,13 @@ function ComputeScores({ scores, setScores, prevStep, nextStep, data }) {
                 <thead >
                     <tr >
                         <th>Subject</th>
+                        {
+                            data.section === "Secondary" && <>
+                                <th>Notebook</th>
+                                <th>Assignment</th>
+                            </>
+                        }
+
                         <th>1st C.A</th>
                         <th>2nd C.A</th>
                         <th>total C.A</th>
@@ -33,6 +40,8 @@ function ComputeScores({ scores, setScores, prevStep, nextStep, data }) {
                         score={score}
                         scores={scores}
                         setScores={setScores}
+                        data={data}
+
                     />
                     )}
                 </tbody>

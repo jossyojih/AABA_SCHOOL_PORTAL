@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
 
-function InputScores({ score, scores, setScores, i }) {
+function InputScores({ score, scores, setScores, i, data }) {
 
+  const [notebook, setNotebook] = useState(score.notebook)
+  const [assignment, setAssignment] = useState(score.assignment)
   const [firstTest, setFirstTest] = useState(score.CA.first)
   const [secondTest, setSecondTest] = useState(score.CA.second)
   const [testTotal, setTestTotal] = useState(score.CA.total)
@@ -24,9 +26,9 @@ function InputScores({ score, scores, setScores, i }) {
 
   useEffect(() => {
 
-    setTotal(testTotal + exam)
+    setTotal(notebook + assignment + testTotal + exam)
 
-  }, [testTotal,exam])
+  }, [notebook, assignment, testTotal, exam])
 
 
   useEffect(() => {
@@ -35,17 +37,17 @@ function InputScores({ score, scores, setScores, i }) {
       return
     }
 
-  if (total > 84.9) {
+    if (total > 84.9) {
       setGrade('A')
       setRemark('Excellent')
-  } else if (total > 74.9 && total < 85) {
+    } else if (total > 74.9 && total < 85) {
       setGrade('B')
       setRemark('Very Good')
 
     } else if (total > 59.9 && total < 75) {
       setGrade('C')
       setRemark('Good')
- 
+
     } else if (total > 49.9 && total < 60) {
       setGrade('D')
       setRemark('Pass')
@@ -63,6 +65,8 @@ function InputScores({ score, scores, setScores, i }) {
 
     const set = scores
 
+    set[i].notebook = notebook
+    set[i].assignment = assignment
     set[i].CA.first = firstTest
     set[i].CA.second = secondTest
     set[i].CA.total = testTotal
@@ -72,13 +76,37 @@ function InputScores({ score, scores, setScores, i }) {
     set[i].remark = remark
     setScores(set)
 
-  }, [remark,total])
+  }, [remark, total])
 
 
   return (
 
     <tr key={i}>
       <td>{score.subject}</td>
+      {
+        data.section === "Secondary" &&
+        <>
+          <td>
+            <input
+              type="number"
+              placeholder="Notebook"
+              onChange={(e) => setNotebook(Number(e.target.value))}
+              onBlur={computeTestTotal}
+              value={notebook}
+
+            />
+          </td>
+          <td><input
+            type="number"
+            placeholder="Assignment"
+            onChange={(e) => setAssignment(Number(e.target.value))}
+            onBlur={computeTestTotal}
+            value={assignment}
+
+          />
+          </td>
+        </>
+      }
 
       <td><input
         type="number"
@@ -107,7 +135,7 @@ function InputScores({ score, scores, setScores, i }) {
           type="number"
           placeholder="Exam Score"
           onChange={(e) => setExam(Number(e.target.value))}
-          onBlur={(e) => setTotal(testTotal + exam)}
+          onBlur={(e) => setTotal(notebook + assignment + testTotal + exam)}
           value={exam}
 
         />
