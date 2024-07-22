@@ -223,11 +223,21 @@ function StudentResult() {
                                     </tr>
 
                                 </thead>
+
                                 <tbody>
                                     {scores.map((score, i) => {
-                                        let firstTermScore = firstTerm.find(item => item.subject == score.subject)?.total
-                                        let secondTermScore = secondTerm.find(item => item.subject == score.subject)?.total
-                                        let cummulative = ((firstTermScore + secondTermScore + score.total) / 3).toFixed(1)
+                                        let firstTermScore = firstTerm?.find(item => item.subject == score.subject)?.total || 0
+                                        let secondTermScore = secondTerm?.find(item => item.subject == score.subject)?.total || 0
+                                        let cummulative;
+                                        if (firstTermScore === 0 && secondTermScore === 0) {
+                                            cummulative = (score.total).toFixed(1);
+                                        } else if (firstTermScore === 0 && secondTermScore !== 0) {
+                                            cummulative = ((secondTermScore + score.total) / 2).toFixed(1);
+                                        } else if (firstTermScore !== 0 && secondTermScore === 0) {
+                                            cummulative = ((firstTermScore + score.total) / 2).toFixed(1);
+                                        } else {
+                                            cummulative = ((firstTermScore + secondTermScore + score.total) / 3).toFixed(1);
+                                        }
 
                                         return (
                                             <>
