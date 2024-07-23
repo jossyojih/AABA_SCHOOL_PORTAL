@@ -25,8 +25,14 @@ function InputScores({ score, scores, setScores, i, data }) {
 
 
   useEffect(() => {
+    console.log(notebook, assignment, testTotal, exam)
+    if (!notebook || !assignment) {
+      setTotal(testTotal + exam)
+    } else {
+      setTotal(notebook + assignment + testTotal + exam)
+    }
 
-    setTotal(notebook + assignment + testTotal + exam)
+
 
   }, [notebook, assignment, testTotal, exam])
 
@@ -135,7 +141,7 @@ function InputScores({ score, scores, setScores, i, data }) {
           type="number"
           placeholder="Exam Score"
           onChange={(e) => setExam(Number(e.target.value))}
-          onBlur={(e) => setTotal(notebook + assignment + testTotal + exam)}
+          onBlur={(e) => setTotal((!notebook || !assignment) ? testTotal + exam : notebook + assignment + testTotal + exam)}
           value={exam}
 
         />
