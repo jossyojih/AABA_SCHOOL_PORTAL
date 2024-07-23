@@ -59,7 +59,6 @@ function StudentResult() {
         if (!data) return
         // Store the current Route to prevent page refreshing to '/'
         localStorage.setItem("route", `/studentportal/result/${id}`)
-        console.log(data)
 
         if (!data?.result) {
 
@@ -290,6 +289,7 @@ function StudentResult() {
                             </table>
                             <div className='resultSummary'>
                                 <ReportSheetSummary
+                                    cummulative={data}
                                     scores={result?.scores}
                                     total={result?.total}
                                     average={result?.average}
