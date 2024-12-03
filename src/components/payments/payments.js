@@ -6,8 +6,11 @@ import DatePicker from "react-datepicker";
 import { HOST_URL } from '../../config'
 import SelectSession from '../SelectSession';
 import SelectClass from '../SelectClass';
+import { useStateValue } from '../../StateProvider';
+
 
 function PaymentsPage() {
+    const [{ user }, dispatch] = useStateValue()
     const [sort, setSort] = useState('date')
     const [term, setTerm] = useState()
     const [month, setMonth] = useState()
@@ -232,7 +235,7 @@ function PaymentsPage() {
                                     {data.map(payments => {
                                         return (
                                             <tr key={payments._id}>
-                                                <td style={{ cursor: 'pointer' }} onClick={() => history.push(`/accountportal/studentprofile/${payments.studentDetails._id}`)}>{payments.studentDetails.firstname} {payments.studentDetails.middlename} {payments.studentDetails.lastname}</td>
+                                                <td style={{ cursor: 'pointer' }} onClick={() => history.push(`/${user?.role==="super-admin"?"adminportal":"accountportal"}/studentprofile/${payments.studentDetails._id}`)}>{payments.studentDetails.firstname} {payments.studentDetails.middlename} {payments.studentDetails.lastname}</td>
                                                 <td>{payments.stdClass}</td>
                                                 <td>{payments.term === 1 ? 'First' : payments.term === 2 ? 'Second' : 'Third'}</td>
                                                 <td><span style={{ textDecoration: 'line-through', textDecorationStyle: 'double' }}>N</span> {payments.paymentInfo.schoolFees || '---'}</td>

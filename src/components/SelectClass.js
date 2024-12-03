@@ -57,6 +57,17 @@ function SelectClass({ stdClass, setStdClass, section, step, setStep, select, Ne
                         <option value="JSS3">JSS 3</option>
                     </>
                 }
+
+                {
+                    (section === "Senior-Secondary") && <>
+                        <option value="SSS1(Science)">SSS 1 (Science)</option>
+                        <option value="SSS1(Art)">SSS 1 (Art)</option>
+                        <option value="SSS2(Science)">SSS 2 (Science)</option>
+                        <option value="SSS2(Art)">SSS 2 (Art)</option>
+                        <option value="SSS3(Science)">SSS 3 (Science)</option>
+                        <option value="SSS3(Art)">SSS 3 (Art)</option>
+                    </>
+                }
                 {
 
                     (section === "") && <>
@@ -78,6 +89,12 @@ function SelectClass({ stdClass, setStdClass, section, step, setStep, select, Ne
                         <option value="JSS1(Diamond)">JSS 1 (Diamond)</option>
                         <option value="JSS2">JSS 2</option>
                         <option value="JSS3">JSS 3</option>
+                        <option value="SSS1(Science)">SSS 1 (Science)</option>
+                        <option value="SSS1(Art)">SSS 1 (Art)</option>
+                        <option value="SSS2(Science)">SSS 2 (Science)</option>
+                        <option value="SSS2(Art)">SSS 2 (Art)</option>
+                        <option value="SSS3(Science)">SSS 3 (Science)</option>
+                        <option value="SSS3(Art)">SSS 3 (Art)</option>
                     </>
                 }
 

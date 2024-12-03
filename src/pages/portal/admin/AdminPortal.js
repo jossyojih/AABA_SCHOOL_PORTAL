@@ -35,6 +35,7 @@ import PromoteStudents from './PromoteStudents';
 import SearchStudent from '../../../components/Reuseables/SearchStudent';
 import Fees from '../../../components/payments/Fees';
 import UploadResult from './UploadResult';
+import PaymentsPage from '../../../components/payments/payments';
 
 const AdminPortal = (props) => {
 
@@ -184,6 +185,34 @@ const AdminPortal = (props) => {
                             </div>
                         </div>
                     </li>
+                    {
+                        user?.role === 'super-admin' &&
+                        <li className="nav-item">
+                            <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages1" aria-expanded="true" aria-controls="collapsePages1">
+                                <i className="fas fa-fw fa-folder"></i>
+                                <span>Financials</span>
+                            </a>
+                            <div id="collapsePages1" className="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                                <div className="bg-white py-2 collapse-inner rounded">
+                                    <h6 className="collapse-header">Finance Screens:</h6>
+
+
+                                    <Link to='/adminportal/paymentpage' className="collapse-item" >View Payments</Link>
+                                    {/* <Link to='/accountportal/staffvalidation' className="collapse-item" >New Payment</Link> */}
+                                    {/* <Link to='/accountportal/feestopay' className="collapse-item">Fees By Sections</Link>
+                                <h6 className="collapse-header">Expenses Screens:</h6>
+                                <Link to='/accountportal/viewexpenses' className="collapse-item">View Expenses</Link>
+                                <Link to='/accountportal/requisitionform' className="collapse-item">Raise Requisition</Link>
+                                <Link to='/accountportal/viewrequisitions' className="collapse-item">View Requisitions</Link>
+                                <h6 className="collapse-header">Salary Screens:</h6>
+                                <Link to='/accountportal/staffpaymentlist' className="collapse-item">Pay Salary</Link>
+                                <Link to='/accountportal/viewsalaries' className="collapse-item">View Salaries</Link>
+                                <Link to='/accountportal/financialsummary' className="collapse-item">FinancialSummary</Link> */}
+                                </div>
+                            </div>
+                        </li>
+                    }
+
 
                     <div className="sidebar-heading">
                         Addons
@@ -440,6 +469,10 @@ const AdminPortal = (props) => {
                         <div className="container-fluid">
 
                             <Switch>
+
+                                {/* Finace View */}
+                                <Route path={`${path}/paymentpage`} component={PaymentsPage}
+                                />
                                 <Route path={`${path}/result-upload`} component={UploadResult}
                                 />
                                 <Route path={`${path}/promote-students`} component={PromoteStudents}

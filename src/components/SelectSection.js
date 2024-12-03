@@ -17,7 +17,8 @@ function SelectSection({ setSection, section, setSectionErr }) {
                 <option value="Nursery">Nursery</option>
                 <option value="Lower-Grade">Lower-Grade</option>
                 <option value="Upper-Grade">Upper-Grade</option>
-                <option value="Secondary"> Secondary</option>
+                <option value="Secondary">Junior Secondary</option>
+                <option value="Senior-Secondary">Senior Secondary</option>
 
 
             </select>

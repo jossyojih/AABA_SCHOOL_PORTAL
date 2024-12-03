@@ -8,6 +8,8 @@ function SubjectList() {
     const nurserySubjects = ['Number work', 'Phonics', 'Letter work', 'Science', 'Social Norms', 'Hand Writing', 'colouring', 'Rhymes','Nursery Science']
     const primarySubjects = ['English Language',"Grammer","Phonics","Comprehension","Literature","Dictation/Spelling","Composition",'Mathematics', 'Social-Studies', 'Basic Science', 'Quantitative-Reasoning', "Verbal-Reasoning", 'I.C.T', "Home Economics","Civic Education",'Cultural and Creative Arts',"Music",'Hand-Writing', 'CRK/IRK', "Agricultural Science"]
     const secondarySubjects = ['English Language', 'Mathematics', 'Social-Studies', 'Basic Science', 'Business Studies', "P.H.E", 'I.C.T', "Home Economics", 'Basic Tech', 'Cultural and Creative Arts',"Literature-In-English",'CRK/IRK',"Civic Education", "Agricultural Science"]
+    const seniorSecondary = ['English Language', 'Mathematics',"Further-Mathematics","Lit-in-English","Physics","Chemistry","Biology","Agric/Technical Drawing","Animal Husbandary","Civic Education","Commerce","Government","History","Marketing","Fin. Accounting", "CRK/IRK","Data Processing","Economics","Geography"]
+  
     const [section, setSection] = useState();
     const [sectionErr, setSectionErr] = useState('')
     const [subjects, setSubjects] = useState([])
@@ -107,6 +109,24 @@ useEffect(() => {
                 (section === "Secondary") && <>
                     {
                         secondarySubjects.map((subject, i) => {
+                            return (<div className="form-group" key={i}>
+                                <div className="form-group-display">
+                                    <label htmlFor="section">{subject}</label>
+                                    <input type='checkbox' id='flight' name='powers' onChange={(e) => handleChange(e, subject)} />
+                                </div>
+                            </div>
+                            )
+                        })
+                    }
+                 
+
+                </>
+            }
+
+{
+                (section === "Senior-Secondary") && <>
+                    {
+                        seniorSecondary.map((subject, i) => {
                             return (<div className="form-group" key={i}>
                                 <div className="form-group-display">
                                     <label htmlFor="section">{subject}</label>
