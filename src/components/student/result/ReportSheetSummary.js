@@ -48,15 +48,15 @@ function ReportSheetSummary({ scores, total, average, grade, scale, classHigh, c
                         <td >Scale</td>
                         <td colSpan='2'>{scale || 0}</td>
                     </tr>
-                    {/* <tr>
+                    <tr>
                         <td >Class Highest Average</td>
                         <td colSpan='2'>{classHigh || 0}</td>
                     </tr>
                     <tr>
                         <td >Class Lowest Average</td>
                         <td colSpan='2'>{classLow || 0}</td>
-                    </tr> */}
-                    <tr>
+                    </tr>
+                    {/* <tr>
                         <td >First Term Average</td>
                         <td colSpan='2'>{cummulative?.firstTerm?.average || "NA"}</td>
                     </tr>
@@ -67,7 +67,7 @@ function ReportSheetSummary({ scores, total, average, grade, scale, classHigh, c
                     <tr>
                         <td >Overall Cummulative Average</td>
                         <td colSpan='2'>{overallCumm || 0}</td>
-                    </tr>
+                    </tr> */}
                 </tbody>
             </table>
         </div>

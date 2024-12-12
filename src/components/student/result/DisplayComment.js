@@ -2,8 +2,14 @@ import React, {useEffect,useState} from 'react';
 import {HOST_URL} from '../../../config'
 import moment from 'moment'
 
-function DisplayComment({id,result,termStart}) {
-  
+function DisplayComment({id,result,termStart,section}) {
+  console.log(section,"Result")
+  const [stdSection,setStdSection] = useState("")
+
+useEffect(() => {
+  setStdSection(section)
+}, [section])
+
  
   return (
     <div className='displayComment'>
@@ -18,11 +24,11 @@ function DisplayComment({id,result,termStart}) {
                   <td >{result.teacherComment?.teacherName}</td> 
               </tr>
               <tr>
-                  <th >Head Teacher’s Remark:</th>
+                  <th >{(section && (stdSection ==="Secondary"|| stdSection ==="Senior-Secondary"))? "Principal's":"Head Teacher’s"} Remark:</th>
                    <td >{result.hmComment?.comment} </td> 
               </tr>
               <tr>
-                  <th >Head Teacher’s Name:</th>
+                  <th >{(section && (section==="Secondary"|| stdSection==="Senior-Secondary"))? "Principal's":"Head Teacher’s"} Name:</th>
                   <td >{result.hmComment?.hmName}</td> 
               </tr>
               <tr>

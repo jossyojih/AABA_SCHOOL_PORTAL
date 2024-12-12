@@ -330,7 +330,9 @@ function StudentResult() {
                         <DisplayComment
                             result={result}
                             termStart={termStart}
-                            id={id} />
+                            id={id}
+                            section={studentDetails?.section}
+                            />
                     </div>
                     {((user?.role !== 'student') && preview === false) &&
                         <>
