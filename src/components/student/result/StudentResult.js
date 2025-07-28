@@ -105,11 +105,11 @@ function StudentResult() {
                 method: "post",
                 body: data
             })
-           
+
             const cloudData = await res.json()
             const url = cloudData.url
             const newUrl = url.slice(0, -3) + 'png'
-          
+
             const response = await fetch(`${HOST_URL}/api/staff/student-result-image`, {
                 method: 'put',
                 headers: {
@@ -191,7 +191,7 @@ function StudentResult() {
                                 <thead>
                                     <tr>
                                         <th>Subject</th>
-                                        {studentDetails.section === 'Secondary' &&
+                                        {(studentDetails.section === 'Secondary' || studentDetails.section === 'Senior-Secondary') &&
                                             <>
                                                 <th>Notebk</th>
                                                 <th>Assign.</th>
@@ -245,14 +245,14 @@ function StudentResult() {
                                                         <td >{score.subject}</td>
                                                         {(studentDetails.section === 'Secondary' || studentDetails.section === 'Senior-Secondary') &&
                                                             <>
-                                                                <td className='text-center'>{score.assignment}</td>
-                                                                <td className='text-center'>{score.notebook}</td>
+                                                                <td className='text-center'>{score?.assignment}</td>
+                                                                <td className='text-center'>{score?.notebook}</td>
                                                             </>
 
                                                         }
                                                         {/* <td className='text-center'>{score.CA.total}</td> */}
-                                                           <td className='text-center'>{score.CA.first}</td>
-                                                              <td className='text-center'>{score.CA.second}</td>
+                                                        <td className='text-center'>{score.CA.first}</td>
+                                                        <td className='text-center'>{score.CA.second}</td>
                                                         {/* <td>{score.project}</td> */}
                                                         <td className='text-center'>{score.exam}</td>
                                                         <td className='text-center'>{score.total}</td>
@@ -334,7 +334,7 @@ function StudentResult() {
                             termStart={termStart}
                             id={id}
                             section={studentDetails?.section}
-                            />
+                        />
                     </div>
                     {((user?.role !== 'student') && preview === false) &&
                         <>
