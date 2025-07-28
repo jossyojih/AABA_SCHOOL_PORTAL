@@ -116,7 +116,7 @@ function InputScores({ score, scores, setScores, i, data }) {
     <tr key={i}>
       <td>{score.subject}</td>
       {
-        data.section === "Secondary" &&
+        (data.section === "Secondary" || data.section === "Senior-Secondary") && 
         <>
           <td>
             <input

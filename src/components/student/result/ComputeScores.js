@@ -18,7 +18,7 @@ function ComputeScores({ scores, setScores, prevStep, nextStep, data }) {
                     <tr >
                         <th>Subject</th>
                         {
-                            data.section === "Secondary" && <>
+                            (data.section === "Secondary" || data.section === "Senior-Secondary") && <>
                                 <th>Notebook</th>
                                 <th>Assignment</th>
                             </>

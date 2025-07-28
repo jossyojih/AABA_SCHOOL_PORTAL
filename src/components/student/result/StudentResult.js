@@ -243,7 +243,7 @@ function StudentResult() {
                                                 {(score.total !== 0) &&
                                                     <tr key={i}>
                                                         <td >{score.subject}</td>
-                                                        {studentDetails.section === 'Secondary' &&
+                                                        {(studentDetails.section === 'Secondary' || studentDetails.section === 'Senior-Secondary') &&
                                                             <>
                                                                 <td className='text-center'>{score.assignment}</td>
                                                                 <td className='text-center'>{score.notebook}</td>
