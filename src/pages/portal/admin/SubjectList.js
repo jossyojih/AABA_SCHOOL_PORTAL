@@ -5,20 +5,20 @@ import { HOST_URL } from '../../../config'
 import Loader from 'react-loader-spinner'
 
 function SubjectList() {
-    const nurserySubjects = ['Number work', 'Phonics', 'Letter work', 'Science', 'Social Norms', 'Hand Writing', 'colouring', 'Rhymes','Nursery Science']
-    const primarySubjects = ['English Language',"Grammer","Phonics","Comprehension","Literature","Dictation/Spelling","Composition",'Mathematics', 'Social-Studies', 'Basic Science', 'Quantitative-Reasoning', "Verbal-Reasoning", 'I.C.T', "Home Economics","Civic Education",'Cultural and Creative Arts',"Music",'Hand-Writing', 'CRK/IRK', "Agricultural Science"]
-    const secondarySubjects = ['English Language', 'Mathematics', 'Social-Studies', 'Basic Science', 'Business Studies', "P.H.E", 'I.C.T', "Home Economics", 'Basic Tech', 'Cultural and Creative Arts',"Literature-In-English",'CRK/IRK',"Civic Education", "Agricultural Science"]
-    const seniorSecondary = ['English Language', 'Mathematics',"Further-Mathematics","Lit-in-English","Physics","Chemistry","Biology","Agric/Technical Drawing","Animal Husbandary","Civic Education","Commerce","Government","History","Marketing","Fin. Accounting", "CRK/IRK","Data Processing","Economics","Geography"]
-  
+    const nurserySubjects = ['Number work', 'Phonics', 'Letter work', 'Science', 'Social Norms', 'Hand Writing', 'colouring', 'Rhymes', 'Nursery Science']
+    const primarySubjects = ['English Language', "Grammer", "Phonics", "Comprehension", "Literature", "Dictation/Spelling", "Composition", 'Mathematics', 'Social-Studies', 'Basic Science', 'Quantitative-Reasoning', "Verbal-Reasoning", 'I.C.T', "Home Economics", "Civic Education", 'Cultural and Creative Arts', "Music", 'Hand-Writing', 'CRK/IRK', "Agricultural Science"]
+    const secondarySubjects = ['English Language', 'Mathematics', 'Social-Studies', 'Basic Science', 'Business Studies', "P.H.E", 'I.C.T', "Home Economics", 'Basic Tech', 'Cultural and Creative Arts', "Literature-In-English", 'CRK/IRK', "Civic Education", "Agricultural Science", "History", "Hausa Language"]
+    const seniorSecondary = ['English Language', 'Mathematics', "Further-Mathematics", "Lit-in-English", "Physics", "Chemistry", "Biology", "Agric/Technical Drawing", "Animal Husbandary", "Civic Education", "Commerce", "Government", "History", "Marketing", "Fin. Accounting", "CRK/IRK", "Data Processing", "Economics", "Geography"]
+
     const [section, setSection] = useState();
     const [sectionErr, setSectionErr] = useState('')
     const [subjects, setSubjects] = useState([])
     const [isLoading, setIsLoading] = useState(false)
 
-useEffect(() => {
-  if(!section)return
-  setSubjects([])
-}, [section])
+    useEffect(() => {
+        if (!section) return
+        setSubjects([])
+    }, [section])
     const onSubmit = async () => {
 
         setIsLoading(true)
@@ -31,7 +31,7 @@ useEffect(() => {
             body: JSON.stringify({
                 section,
                 subjects,
-                
+
             })
         })
 
@@ -43,7 +43,7 @@ useEffect(() => {
 
         } else {
             setIsLoading(false)
-           
+
         }
 
     }
@@ -74,7 +74,7 @@ useEffect(() => {
             </div>
 
             {
-                (section === "Nursery"|| section === "Pre-Nursery") && <>
+                (section === "Nursery" || section === "Pre-Nursery") && <>
                     {
                         nurserySubjects.map((subject, i) => {
                             return (<div className="form-group" key={i}>
@@ -118,12 +118,12 @@ useEffect(() => {
                             )
                         })
                     }
-                 
+
 
                 </>
             }
 
-{
+            {
                 (section === "Senior-Secondary") && <>
                     {
                         seniorSecondary.map((subject, i) => {
@@ -136,14 +136,14 @@ useEffect(() => {
                             )
                         })
                     }
-                 
+
 
                 </>
             }
-               {
-                        isLoading ? <button className="btn btn-primary btn-block"><Loader type="TailSpin" color="#FFF" height={40} width={40} /></button> :
-                            <button onClick={onSubmit} className="btn btn-primary btn-block">Save</button>
-                    }
+            {
+                isLoading ? <button className="btn btn-primary btn-block"><Loader type="TailSpin" color="#FFF" height={40} width={40} /></button> :
+                    <button onClick={onSubmit} className="btn btn-primary btn-block">Save</button>
+            }
         </div>
     )
 }

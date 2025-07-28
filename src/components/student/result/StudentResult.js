@@ -105,12 +105,11 @@ function StudentResult() {
                 method: "post",
                 body: data
             })
-            console.log(res)
+           
             const cloudData = await res.json()
             const url = cloudData.url
             const newUrl = url.slice(0, -3) + 'png'
-            console.log(newUrl)
-
+          
             const response = await fetch(`${HOST_URL}/api/staff/student-result-image`, {
                 method: 'put',
                 headers: {
@@ -197,7 +196,8 @@ function StudentResult() {
                                                 <th>Notebk</th>
                                                 <th>Assign.</th>
                                             </>}
-                                        <th>Test</th>
+                                        <th>1st CA</th>
+                                        <th>2nd CA</th>
                                         {/* <th>Project</th> */}
                                         <th>exam</th>
                                         <th>Total</th>
@@ -250,7 +250,9 @@ function StudentResult() {
                                                             </>
 
                                                         }
-                                                        <td className='text-center'>{score.CA.total}</td>
+                                                        {/* <td className='text-center'>{score.CA.total}</td> */}
+                                                           <td className='text-center'>{score.CA.first}</td>
+                                                              <td className='text-center'>{score.CA.second}</td>
                                                         {/* <td>{score.project}</td> */}
                                                         <td className='text-center'>{score.exam}</td>
                                                         <td className='text-center'>{score.total}</td>

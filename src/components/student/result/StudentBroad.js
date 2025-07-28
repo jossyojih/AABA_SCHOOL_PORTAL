@@ -45,7 +45,7 @@ function BroadSheet() {
         if (!stdClass) {
             return alert('No Class Selected')
         }
-        console.log(result)
+        
         // Initialize variables to keep track of highest and lowest averages
         let highestAverage = Number.MIN_SAFE_INTEGER;
         let lowestAverage = Number.MAX_SAFE_INTEGER;

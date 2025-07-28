@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 
 function ReportSheetSummary({ scores, total, average, grade, scale, classHigh, classLow, cummulative }) {
 
-    console.log(cummulative, "Cummulative")
     let overallCumm;
     if (!cummulative?.firstTerm?.average && !cummulative?.secondTerm?.average) {
         overallCumm = average?.toFixed(1);
